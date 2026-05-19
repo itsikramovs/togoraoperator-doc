@@ -176,6 +176,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .who-tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px}
 .who-op{background:var(--blue-dim);color:var(--blue)}
 .who-sup{background:var(--purple-dim);color:var(--purple)}
+.who-log{background:var(--green-dim);color:var(--green)}
 .who-all{background:var(--green-dim);color:var(--green)}
 
 /* ══ INFO CARDS ══ */
@@ -399,7 +400,7 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
   <div class="tb-sep"></div>
   <div class="tb-title">Панель оператора контакт-центра</div>
   <div class="tb-right">
-    <span class="tb-badge tb-v">v1.0.3</span>
+    <span class="tb-badge tb-v">v1.0.6</span>
     <span class="tb-badge tb-date">19.05.2026</span>
     <span class="tb-badge tb-stack">Web · HTML/CSS/JS</span>
   </div>
@@ -468,9 +469,9 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
     </thead>
     <tbody>
 
-      <!-- ── v1.0.3 ── -->
+      <!-- ── v1.0.6 ── -->
       <tr>
-        <td><span class="cl-ver minor">v1.0.3</span></td>
+        <td><span class="cl-ver minor">v1.0.6</span></td>
         <td><span class="cl-date">19.05.2026</span></td>
         <td>
           <ul class="cl-changes">
@@ -634,8 +635,10 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
         <li>Видит заказы в статусах: <strong>Готовится, Готово, В пути, Доставлен</strong></li>
         <li>Просматривает карту курьеров в реальном времени</li>
         <li>Видит инциденты и угрозы, связанные с курьерами</li>
-        <li>Может изменить назначенного оператора заказа</li>
+        <li>Может назначать и переназначать курьеров на заказы</li>
         <li>Может вызвать экстренного курьера</li>
+        <li>Может эскалировать курьерский инцидент начальнику КЦ</li>
+        <li>Видит дашборд курьеров: нагрузка, маршруты, статусы</li>
         <li>Не управляет статусами заказов и не инициирует отмены</li>
       </ul>
     </div>
@@ -665,20 +668,22 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
       </tr>
     </thead>
     <tbody>
-      <tr><td>Просмотр заказов</td><td>Только свои</td><td>Готовится / Готово / В пути / Доставлен</td><td>Все заказы</td></tr>
+      <tr><td>Просмотр заказов</td><td>Только свои</td><td>Готовится / Готово к отпр. / В пути / Завершено</td><td>Все заказы</td></tr>
       <tr><td>Перевод на следующий статус</td><td>✅</td><td>—</td><td>✅</td></tr>
       <tr><td>Принудительный перевод через модал</td><td>✅</td><td>—</td><td>✅</td></tr>
       <tr><td>Добавить примечание</td><td>✅</td><td>—</td><td>✅</td></tr>
       <tr><td>Отметить контрольный звонок</td><td>✅</td><td>—</td><td>✅</td></tr>
       <tr><td>Изменить оператора заказа</td><td>—</td><td>✅</td><td>✅</td></tr>
       <tr><td>Просмотр карты курьеров</td><td>—</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Назначить / переназначить курьера</td><td>—</td><td>✅</td><td>✅</td></tr>
       <tr><td>Вызов экстренного курьера</td><td>—</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Дашборд курьеров (нагрузка, маршруты)</td><td>—</td><td>✅</td><td>✅</td></tr>
       <tr><td>Просмотр инцидентов / угроз (все)</td><td>✅</td><td>Только курьерские</td><td>✅</td></tr>
-      <tr><td>Эскалировать начальнику</td><td>✅</td><td>—</td><td>—</td></tr>
+      <tr><td>Эскалировать начальнику</td><td>✅</td><td>✅ (курьерские инциденты)</td><td>—</td></tr>
       <tr><td>Запрос на отмену (→ эскалация)</td><td>✅</td><td>—</td><td>—</td></tr>
       <tr><td>Разобрать эскалацию</td><td>—</td><td>—</td><td>✅</td></tr>
       <tr><td>Отменить заказ напрямую</td><td>—</td><td>—</td><td>✅</td></tr>
-      <tr><td>Изменить курьера заказа</td><td>—</td><td>—</td><td>✅</td></tr>
+      <tr><td>Изменить курьера заказа</td><td>—</td><td>✅</td><td>✅</td></tr>
       <tr><td>Инициировать возврат Click</td><td>—</td><td>—</td><td>✅</td></tr>
       <tr><td>Дашборд команды / Эскалации</td><td>—</td><td>—</td><td>✅</td></tr>
     </tbody>
@@ -695,7 +700,9 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
         <span class="st-badge sbl-tr" style="font-size:10px">В пути</span>
         <span class="st-badge sbl-done" style="font-size:10px">Завершено</span>.
         Заказы до стадии готовки (Новый, Принято рестораном) и отменённые заказы в интерфейсе логиста не отображаются.<br><br>
-        Из тревог и инцидентов логист видит <strong>только те, которые связаны с курьером</strong>: опоздание курьера, GPS недоступен, ДТП, курьер не отвечает, превышение времени маршрута.
+        Из тревог и инцидентов логист видит <strong>только те, которые связаны с курьером</strong>: опоздание курьера, GPS недоступен, ДТП, курьер не отвечает, превышение времени маршрута.<br><br>
+        По курьерским инцидентам логист может <strong>эскалировать начальнику КЦ</strong> — кнопка «↑ Эскалировать» доступна в карточке заказа при статусах «Угроза» и «Инцидент» курьерского типа.<br><br>
+        Логист также имеет доступ к <strong>дашборду курьеров</strong>: текущая нагрузка, активные маршруты на карте, статусы курьеров (онлайн / в пути / недоступен), история смены.
       </div>
     </div>
   </div>
@@ -714,12 +721,13 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
     <div class="ui-panel-hd"><span class="ui-panel-title">Элементы топбара (слева → справа)</span></div>
     <div class="ui-panel-body">
       <div class="ui-row"><div class="ui-label">🔸 Логотип TOG'ORA</div><div class="ui-val">Версия v7, бренд-цвет #FF6B2B</div></div>
-      <div class="ui-row"><div class="ui-label">☀ Тег смены</div><div class="ui-val">«Смена 1 · 05:00–12:00» / «👑 Начальник КЦ» в зависимости от роли</div></div>
+      <div class="ui-row"><div class="ui-label">☀ Тег смены</div><div class="ui-val">«Смена 1 · 05:00–12:00» / «🚚 Логист» / «👑 Начальник КЦ» в зависимости от роли</div></div>
       <div class="ui-row"><div class="ui-label">🕐 Часы реального времени</div><div class="ui-val">Обновляются каждую секунду. Формат HH:MM:SS</div></div>
       <div class="ui-row"><div class="ui-label">⌕ Поиск</div><div class="ui-val">Живой поиск по ID заказа, названию ресторана, имени клиента, номеру телефона</div></div>
       <div class="ui-row"><div class="ui-label">👤 Фильтр оператора</div><div class="ui-val">Только у начальника КЦ. Фильтрует список по конкретному оператору</div></div>
-      <div class="ui-row"><div class="ui-label">🗺 Карта</div><div class="ui-val">Полноэкранная карта курьеров. Только у начальника КЦ</div></div>
-      <div class="ui-row"><div class="ui-label">Переключатель роли</div><div class="ui-val">Синяя пилюля = Оператор · Фиолетовая пилюля = Начальник КЦ</div></div>
+      <div class="ui-row"><div class="ui-label">🗺 Карта</div><div class="ui-val">Полноэкранная карта курьеров. Доступна логисту и начальнику КЦ</div></div>
+      <div class="ui-row"><div class="ui-label">📊 Дашборд курьеров</div><div class="ui-val">Нагрузка, маршруты и статусы курьеров в реальном времени. Доступна логисту и начальнику КЦ</div></div>
+      <div class="ui-row"><div class="ui-label">Переключатель роли</div><div class="ui-val">Синяя пилюля = Оператор · Зелёная пилюля = Логист · Фиолетовая пилюля = Начальник КЦ</div></div>
       <div class="ui-row"><div class="ui-label">🔔 Колокол (красный)</div><div class="ui-val">Счётчик нерешённых эскалаций. Анимация-пульс. Клик → вкладка «Эскалации»</div></div>
     </div>
   </div>
@@ -1777,10 +1785,11 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
       <div class="btn-demo bdr-esc">↑ Эскалировать</div>
       <div class="btn-row-info">
         <div class="btn-row-name">Escalation — фиолетовый <code>#A855F7</code></div>
-        <div class="btn-row-desc">Передача ситуации наверх. Только оператор — эскалировать. Начальник КЦ — разобрать эскалацию.</div>
+        <div class="btn-row-desc">Передача ситуации наверх. Оператор — любые инциденты. Логист — только курьерские инциденты/угрозы. Начальник КЦ — разобрать эскалацию.</div>
       </div>
       <div class="btn-row-who">
         <span class="who-tag who-op">Оператор</span>
+        <span class="who-tag who-log">Логист</span>
       </div>
     </div>
 
@@ -1821,11 +1830,11 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
 
       <tr><td rowspan="3"><span class="st-badge sbl-risk">Угроза ⚠️</span></td><td>✓ Угроза устранена</td><td><span style="background:var(--green-dim);color:var(--green);padding:1px 6px;border-radius:3px;font-size:10px;border:1px solid rgba(34,197,94,.2)">Green</span></td><td><span class="tag tag-op">Оба</span></td></tr>
       <tr><td>🚨 → Инцидент</td><td><span style="background:var(--red-dim);color:var(--red);padding:1px 6px;border-radius:3px;font-size:10px;border:1px solid rgba(239,68,68,.2)">Danger</span></td><td><span class="tag tag-op">Оба</span></td></tr>
-      <tr><td>↑ Эскалировать</td><td><span style="background:var(--purple-dim);color:var(--purple);padding:1px 6px;border-radius:3px;font-size:10px">Esc</span></td><td><span class="tag tag-op">Оператор</span></td></tr>
+      <tr><td>↑ Эскалировать</td><td><span style="background:var(--purple-dim);color:var(--purple);padding:1px 6px;border-radius:3px;font-size:10px">Esc</span></td><td><span class="tag tag-op">Оператор</span> <span style="font-size:10px;color:var(--green)">(Логист — курьерские)</span></td></tr>
 
       <tr><td rowspan="3"><span class="st-badge sbl-inc">Инцидент 🚨</span></td><td>✓ Инцидент разрешён</td><td><span style="background:var(--green-dim);color:var(--green);padding:1px 6px;border-radius:3px;font-size:10px;border:1px solid rgba(34,197,94,.2)">Green</span></td><td><span class="tag tag-op">Оба</span></td></tr>
       <tr><td>🚗 Резервный курьер</td><td><span style="background:var(--orange);color:#fff;padding:1px 6px;border-radius:3px;font-size:10px">Primary</span></td><td><span class="tag tag-op">Оба</span></td></tr>
-      <tr><td>↑ Эскалировать</td><td><span style="background:var(--purple-dim);color:var(--purple);padding:1px 6px;border-radius:3px;font-size:10px">Esc</span></td><td><span class="tag tag-op">Оператор</span></td></tr>
+      <tr><td>↑ Эскалировать</td><td><span style="background:var(--purple-dim);color:var(--purple);padding:1px 6px;border-radius:3px;font-size:10px">Esc</span></td><td><span class="tag tag-op">Оператор</span> <span style="font-size:10px;color:var(--green)">(Логист — курьерские)</span></td></tr>
     </tbody>
   </table>
 
@@ -1850,6 +1859,40 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
       <div class="ic-icon" style="font-size:16px">💸 Возврат</div>
       <div class="ic-title">Инициировать возврат</div>
       <div class="ic-desc">Click API-запрос на возврат средств. Отмечает <code>refundDone=true</code> с временно́й меткой. Автозапись в хронологию.</div>
+    </div>
+  </div>
+
+  <div class="sub-title">Кнопки только логиста (logist-only)</div>
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="ic-icon" style="font-size:16px">🗺 Карта</div>
+      <div class="ic-title">Карта курьеров</div>
+      <div class="ic-desc">Полноэкранная карта с геопозицией всех активных курьеров. Отображает маршруты, слоты, отставание от графика. Доступна из топбара.</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-icon" style="font-size:16px">📊 Дашборд</div>
+      <div class="ic-title">Дашборд курьеров</div>
+      <div class="ic-desc">Сводная панель: нагрузка по курьерам, статусы (онлайн / в пути / недоступен), история смены, количество доставок. Используется для оперативного перераспределения.</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-icon" style="font-size:16px">🚗 Назначить</div>
+      <div class="ic-title">Назначить / переназначить курьера</div>
+      <div class="ic-desc">Открывает модал со списком свободных курьеров для заказов в статусах «Готово к отправке» и «В пути». Логист может назначить или заменить курьера с указанием причины.</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-icon" style="font-size:16px">🚨 Экстренный</div>
+      <div class="ic-title">Вызвать экстренного курьера</div>
+      <div class="ic-desc">Запрос резервного курьера через Яндекс.Доставка или из пула экстренного резерва. Активируется при инцидентах курьерского типа. Автозапись в хронологию.</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-icon" style="font-size:16px">↑ Эскалация</div>
+      <div class="ic-title">Эскалировать начальнику КЦ</div>
+      <div class="ic-desc">Доступна при статусах «Угроза» и «Инцидент» курьерского типа. Логист указывает тип инцидента и описание ситуации. Автоматически увеличивает счётчик колокола у начальника КЦ.</div>
+    </div>
+    <div class="info-card">
+      <div class="ic-icon" style="font-size:16px">👤 Оператор</div>
+      <div class="ic-title">Изменить оператора заказа</div>
+      <div class="ic-desc">Переназначает ответственного оператора на выбранный заказ. Показывает список доступных операторов с отметкой онлайн/офлайн. Автозапись в хронологию.</div>
     </div>
   </div>
 
@@ -1893,7 +1936,7 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
 
 <!-- FOOTER -->
 <footer class="doc-footer">
-  <div>© 2026 SSI · TOG'ORA — Продуктовая документация v1.0.3</div>
+  <div>© 2026 SSI · TOG'ORA — Продуктовая документация v1.0.6</div>
   <div>АРМ Оператора · Tog'ora.uz · Ташкент</div>
 </footer>
 

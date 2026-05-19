@@ -377,6 +377,40 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
 .doc-footer{padding:40px 64px;border-top:1px solid var(--border);color:var(--text3);font-size:12px;margin-left:var(--sidebar-w);display:flex;align-items:center;justify-content:space-between}
 .doc-footer a{color:var(--orange);text-decoration:none}
 
+/* ══ LOAD BAR ══ */
+.load-bar-wrap{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px 20px;margin-bottom:8px;display:flex;align-items:center;gap:16px}
+.load-bar-name{min-width:90px;font-size:12px;font-weight:600;color:var(--text)}
+.load-bar-track{flex:1;height:8px;background:var(--surface3);border-radius:4px;overflow:hidden}
+.load-bar-fill{height:100%;border-radius:4px;transition:width .3s}
+.lb-low{background:linear-gradient(90deg,var(--green),#16A34A)}
+.lb-mid{background:linear-gradient(90deg,var(--yellow),#D97706)}
+.lb-high{background:linear-gradient(90deg,var(--orange),#EA580C)}
+.lb-crit{background:linear-gradient(90deg,var(--red),#DC2626)}
+.load-bar-score{min-width:36px;font-family:var(--mono);font-size:12px;font-weight:700;text-align:right}
+.load-bar-orders{font-size:11px;color:var(--text3);min-width:100px;text-align:right}
+.load-bar-pick{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;flex-shrink:0}
+.lb-pick-yes{background:var(--green-dim);color:var(--green);border:1px solid rgba(34,197,94,.3)}
+.lb-pick-no{background:var(--surface2);color:var(--text3);border:1px solid var(--border)}
+
+/* ══ ALGO STEPS ══ */
+.algo-flow{display:flex;flex-direction:column;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:24px}
+.algo-step{display:grid;grid-template-columns:48px 1fr;border-bottom:1px solid var(--border)}
+.algo-step:last-child{border-bottom:none}
+.algo-step-num{background:var(--surface2);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:700;color:var(--orange);border-right:1px solid var(--border)}
+.algo-step-body{padding:14px 18px}
+.algo-step-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px;display:flex;align-items:center;gap:8px}
+.algo-step-desc{font-size:12px;color:var(--text2);line-height:1.6}
+.algo-step.branch{background:rgba(245,158,11,.03)}
+.algo-step.fallback{background:rgba(239,68,68,.03)}
+.algo-step.done{background:rgba(34,197,94,.03)}
+
+/* ══ WEIGHT TABLE ══ */
+.weight-row{display:flex;align-items:center;gap:12px;padding:11px 16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:6px}
+.wr-icon{font-size:18px;width:30px;text-align:center;flex-shrink:0}
+.wr-name{flex:1;font-size:13px;font-weight:600;color:var(--text)}
+.wr-formula{font-family:var(--mono);font-size:12px;color:var(--cyan);padding:2px 8px;background:var(--surface2);border-radius:4px;border:1px solid var(--border)}
+.wr-note{font-size:11px;color:var(--text3);min-width:200px;text-align:right}
+
 /* ══ RESPONSIVE ══ */
 @media(max-width:1100px){.content{padding:40px 40px}}
 @media(max-width:900px){
@@ -400,7 +434,7 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
   <div class="tb-sep"></div>
   <div class="tb-title">Панель оператора контакт-центра</div>
   <div class="tb-right">
-    <span class="tb-badge tb-v">v1.0.6</span>
+    <span class="tb-badge tb-v">v1.0.7</span>
     <span class="tb-badge tb-date">19.05.2026</span>
     <span class="tb-badge tb-stack">Web · HTML/CSS/JS</span>
   </div>
@@ -440,6 +474,7 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
     <a class="sb-item" href="#s13"><span class="sb-num">13</span>Фотоконтроль</a>
     <a class="sb-item" href="#s14"><span class="sb-num">14</span>Карта курьеров</a>
     <a class="sb-item" href="#s15"><span class="sb-num">15</span>Каталог кнопок</a>
+    <a class="sb-item" href="#s16"><span class="sb-num">16</span>Распределение заказов</a>
   </div>
 </nav>
 
@@ -468,6 +503,26 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
       </tr>
     </thead>
     <tbody>
+
+      <!-- ── v1.0.7 ── -->
+      <tr>
+        <td><span class="cl-ver minor">v1.0.7</span></td>
+        <td><span class="cl-date">19.05.2026</span></td>
+        <td>
+          <ul class="cl-changes">
+            <li><span class="cl-tag add">ADD</span>s16 (новый раздел): «Распределение заказов между операторами»</li>
+            <li><span class="cl-tag add">ADD</span>s16: Алгоритм назначения — 4 шага + fallback при пустом пуле</li>
+            <li><span class="cl-tag add">ADD</span>s16: Формула взвешенной нагрузки W (×1 / ×2 / ×3) с примером расчёта</li>
+            <li><span class="cl-tag add">ADD</span>s16: Визуальный индикатор нагрузки смены (load-bar компонент)</li>
+            <li><span class="cl-tag add">ADD</span>s16: Алгоритм ручного переназначения начальником КЦ (3 шага)</li>
+            <li><span class="cl-tag add">ADD</span>s16: Таблица edge cases (6 сценариев)</li>
+            <li><span class="cl-tag add">ADD</span>s16: Технические параметры — поля БД и события хронологии</li>
+            <li><span class="cl-tag add">ADD</span>Sidebar: пункт «16 Распределение заказов» в группе IV. Операции</li>
+            <li><span class="cl-tag add">ADD</span>CSS: компоненты load-bar, algo-step, weight-row</li>
+          </ul>
+        </td>
+        <td><span class="cl-author">SSI / Claude</span></td>
+      </tr>
 
       <!-- ── v1.0.6 ── -->
       <tr>
@@ -1931,12 +1986,255 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
   </div>
 </section>
 
+<!-- ══════════════ 16 РАСПРЕДЕЛЕНИЕ ЗАКАЗОВ ══════════════ -->
+<section class="doc-section" id="s16">
+  <div class="section-num">16</div>
+  <h1 class="section-title">Распределение заказов между операторами</h1>
+  <div class="section-divider"></div>
+  <p class="section-lead">
+    Каждый новый заказ автоматически назначается на оператора текущей смены по алгоритму
+    наименьшей взвешенной нагрузки (least-busy). Ручное вмешательство доступно только начальнику КЦ.
+  </p>
+
+  <!-- Algo flow -->
+  <div class="sub-title">Алгоритм назначения</div>
+  <div class="algo-flow">
+    <div class="algo-step">
+      <div class="algo-step-num">1</div>
+      <div class="algo-step-body">
+        <div class="algo-step-title">⏰ Определение активной смены</div>
+        <div class="algo-step-desc">
+          Система определяет текущую смену по времени создания заказа:<br>
+          <strong>Смена 1</strong> — 05:00–12:00 &nbsp;·&nbsp; <strong>Смена 2</strong> — 12:00–18:00.<br>
+          В пул кандидатов попадают только операторы, авторизованные в АРМ в момент создания заказа (<code>status = online</code>).
+        </div>
+      </div>
+    </div>
+    <div class="algo-step">
+      <div class="algo-step-num">2</div>
+      <div class="algo-step-body">
+        <div class="algo-step-title">📊 Расчёт взвешенной нагрузки</div>
+        <div class="algo-step-desc">
+          Для каждого онлайн-оператора рассчитывается балл нагрузки <code>W</code> как сумма весов всех его активных заказов:
+        </div>
+      </div>
+    </div>
+    <div class="algo-step branch">
+      <div class="algo-step-num">3</div>
+      <div class="algo-step-body">
+        <div class="algo-step-title">🎯 Выбор оператора с минимальным W</div>
+        <div class="algo-step-desc">
+          Заказ назначается оператору с наименьшим значением <code>W</code> на момент назначения.
+          При равных значениях <code>W</code> выбирается оператор, дольше всего не получавший новый заказ (FIFO по метке последнего назначения).
+        </div>
+      </div>
+    </div>
+    <div class="algo-step branch">
+      <div class="algo-step-num">4</div>
+      <div class="algo-step-body">
+        <div class="algo-step-title">✅ Назначение и уведомление</div>
+        <div class="algo-step-desc">
+          Поле <code>operator_id</code> заказа обновляется. Оператор получает push-уведомление (FCM) и звуковой сигнал в АРМ.
+          В хронологию заказа автоматически записывается событие <code>AUTO_ASSIGNED</code> с именем оператора и временной меткой.
+        </div>
+      </div>
+    </div>
+    <div class="algo-step fallback">
+      <div class="algo-step-num">⚠</div>
+      <div class="algo-step-body">
+        <div class="algo-step-title algo-step-title" style="color:var(--yellow)">Fallback: нет доступных операторов</div>
+        <div class="algo-step-desc">
+          Если пул онлайн-операторов пуст или все операторы заняты (система не блокирует назначение, но W у всех ≥ порога автоэскалации) —
+          заказ остаётся без оператора (<code>operator_id = null</code>) и немедленно триггерит автоэскалацию начальнику КЦ.
+          В топбаре начальника КЦ колокол 🔔 пульсирует; уведомление в Telegram Bot.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Weight formula -->
+  <div class="sub-title">Формула взвешенной нагрузки</div>
+  <div class="sub-desc">Нагрузка оператора <code>W</code> — сумма весов всех его заказов в активных статусах (не «Завершено», не «Отменено»).</div>
+
+  <div class="weight-row">
+    <div class="wr-icon">📦</div>
+    <div class="wr-name">Обычный заказ</div>
+    <div class="wr-formula">×1</div>
+    <div class="wr-note">Статусы: Новый, Принято рест., Готовится, Готово, В пути</div>
+  </div>
+  <div class="weight-row">
+    <div class="wr-icon">⚠️</div>
+    <div class="wr-name">Заказ с угрозой</div>
+    <div class="wr-formula">×2</div>
+    <div class="wr-note">Статус: Угроза — оператор занят активным разбором</div>
+  </div>
+  <div class="weight-row" style="margin-bottom:20px">
+    <div class="wr-icon">🚨</div>
+    <div class="wr-name">Заказ с инцидентом</div>
+    <div class="wr-formula">×3</div>
+    <div class="wr-note">Статус: Инцидент — максимальная когнитивная нагрузка</div>
+  </div>
+
+  <div class="callout callout-note" style="margin-bottom:24px">
+    <div class="callout-icon">🧮</div>
+    <div class="callout-body">
+      <div class="callout-title">Пример расчёта</div>
+      <div class="callout-text">
+        Оператор А: 3 обычных + 1 угроза → W = 3×1 + 1×2 = <strong>5</strong><br>
+        Оператор Б: 4 обычных → W = 4×1 = <strong>4</strong><br>
+        Оператор В: 1 обычный + 1 инцидент → W = 1×1 + 1×3 = <strong>4</strong><br>
+        Система выберет Б или В (равный W=4). Тай-брейкер: кто дольше не получал новый заказ.
+      </div>
+    </div>
+  </div>
+
+  <!-- Live load visual -->
+  <div class="sub-title">Индикатор нагрузки — пример смены</div>
+  <div class="sub-desc">Так выглядит панель нагрузки в АРМ начальника КЦ. Оператор с наименьшим W получит следующий заказ.</div>
+
+  <div style="margin-bottom:24px">
+    <div style="display:grid;grid-template-columns:90px 1fr 60px 120px 24px;gap:8px;padding:6px 20px;font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text3)">
+      <div>Оператор</div><div>Нагрузка W</div><div>Балл</div><div>Состав</div><div></div>
+    </div>
+
+    <div class="load-bar-wrap">
+      <div class="load-bar-name">Алишер М.</div>
+      <div class="load-bar-track"><div class="load-bar-fill lb-low" style="width:15%"></div></div>
+      <div class="load-bar-score" style="color:var(--green)">3</div>
+      <div class="load-bar-orders">3 обычных</div>
+      <div class="load-bar-pick lb-pick-yes">★</div>
+    </div>
+    <div style="font-size:10px;color:var(--green);padding:0 20px 8px;margin-top:-4px">← следующий заказ получит этот оператор</div>
+
+    <div class="load-bar-wrap">
+      <div class="load-bar-name">Феруза Т.</div>
+      <div class="load-bar-track"><div class="load-bar-fill lb-mid" style="width:35%"></div></div>
+      <div class="load-bar-score" style="color:var(--yellow)">7</div>
+      <div class="load-bar-orders">5 обычных + 1 угроза</div>
+      <div class="load-bar-pick lb-pick-no">–</div>
+    </div>
+
+    <div class="load-bar-wrap">
+      <div class="load-bar-name">Санжар К.</div>
+      <div class="load-bar-track"><div class="load-bar-fill lb-high" style="width:55%"></div></div>
+      <div class="load-bar-score" style="color:var(--orange)">11</div>
+      <div class="load-bar-orders">5 обычных + 3 угрозы</div>
+      <div class="load-bar-pick lb-pick-no">–</div>
+    </div>
+
+    <div class="load-bar-wrap">
+      <div class="load-bar-name">Дилноза Р.</div>
+      <div class="load-bar-track"><div class="load-bar-fill lb-crit" style="width:80%"></div></div>
+      <div class="load-bar-score" style="color:var(--red)">16</div>
+      <div class="load-bar-orders">4 обычных + 1 инцидент + 3 угрозы</div>
+      <div class="load-bar-pick lb-pick-no">–</div>
+    </div>
+  </div>
+
+  <!-- Manual override -->
+  <div class="sub-title">Ручное переназначение (Начальник КЦ)</div>
+  <div class="sub-desc">После автоназначения начальник КЦ может переназначить оператора вручную в любой момент жизненного цикла заказа.</div>
+
+  <div class="algo-flow" style="margin-bottom:24px">
+    <div class="algo-step">
+      <div class="algo-step-num">1</div>
+      <div class="algo-step-body">
+        <div class="algo-step-title">Открыть карточку заказа → кнопка «👤 Изменить оператора»</div>
+        <div class="algo-step-desc">Доступна в панели действий заказа для роли «Начальник КЦ» на любом статусе кроме «Завершено» и «Отменено».</div>
+      </div>
+    </div>
+    <div class="algo-step">
+      <div class="algo-step-num">2</div>
+      <div class="algo-step-body">
+        <div class="algo-step-title">Модал: список операторов с текущим W и статусом онлайн/офлайн</div>
+        <div class="algo-step-desc">Каждая строка показывает: имя оператора, балл нагрузки W, количество активных заказов, отметку онлайн/офлайн. Выбор оператора + опциональный комментарий причины.</div>
+      </div>
+    </div>
+    <div class="algo-step done">
+      <div class="algo-step-num">3</div>
+      <div class="algo-step-body">
+        <div class="algo-step-title" style="color:var(--green)">Подтверждение → автозапись в хронологию</div>
+        <div class="algo-step-desc">
+          В хронологию записывается событие <code>MANUAL_REASSIGNED</code>: кто переназначил, с кого на кого, причина, временная метка.
+          Старый оператор получает уведомление «Заказ #TG-XXXX передан». Новый — «Вам назначен заказ #TG-XXXX».
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edge cases -->
+  <div class="sub-title">Edge cases и правила</div>
+
+  <table class="status-table" style="margin-bottom:24px">
+    <thead>
+      <tr><th>Ситуация</th><th>Поведение системы</th><th>Действие нач. КЦ</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Все операторы смены оффлайн</td>
+        <td><code>operator_id = null</code>. Автоэскалация. Колокол пульсирует.</td>
+        <td>Назначить вручную или перевести оператора в онлайн</td>
+      </tr>
+      <tr>
+        <td>Оператор выходит оффлайн в середине смены</td>
+        <td>Его текущие заказы остаются за ним. Новые заказы перестают поступать.</td>
+        <td>Может переназначить заказы оффлайн-оператора вручную</td>
+      </tr>
+      <tr>
+        <td>Заказ поступает на стыке смен (11:45–12:15)</td>
+        <td>Назначается на смену, активную в момент создания заказа. Если Смена 1 ещё онлайн — попадает к ним.</td>
+        <td>При необходимости переназначить на Смену 2</td>
+      </tr>
+      <tr>
+        <td>Нет лимита заказов на оператора</td>
+        <td>Система назначает без ограничений — выбирает минимальный W, даже если он высокий.</td>
+        <td>Мониторить нагрузку через дашборд; переназначать при W &gt; допустимого</td>
+      </tr>
+      <tr>
+        <td>Оператор сам не может взять заказ из очереди</td>
+        <td>Заказ недоступен для самостоятельного выбора. Только система или нач. КЦ.</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Заказ эскалирован — оператор меняется?</td>
+        <td>Нет. Эскалация не меняет оператора — только привлекает начальника КЦ к разбору.</td>
+        <td>После разбора может переназначить при необходимости</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- DB / API note -->
+  <div class="sub-title">Технические параметры</div>
+  <div class="ui-panel">
+    <div class="ui-panel-hd"><span class="ui-panel-title">Поля БД и события хронологии</span></div>
+    <div class="ui-panel-body">
+      <div class="ui-row"><div class="ui-label"><code>orders.operator_id</code></div><div class="ui-val">FK → <code>users.id</code>. <code>null</code> = не назначен (триггер автоэскалации)</div></div>
+      <div class="ui-row"><div class="ui-label"><code>orders.assigned_at</code></div><div class="ui-val">Timestamp первичного автоназначения. Не обновляется при переназначении.</div></div>
+      <div class="ui-row"><div class="ui-label"><code>orders.reassigned_at</code></div><div class="ui-val">Timestamp последнего ручного переназначения. Null если переназначений не было.</div></div>
+      <div class="ui-row"><div class="ui-label"><code>users.operator_load_w</code></div><div class="ui-val">Денормализованный кэш текущего балла W. Пересчитывается при каждом изменении статуса заказа.</div></div>
+      <div class="ui-row"><div class="ui-label"><code>users.last_assigned_at</code></div><div class="ui-val">Timestamp последнего назначения на оператора. Используется как тай-брейкер при равном W.</div></div>
+      <div class="ui-row"><div class="ui-label">Событие <code>AUTO_ASSIGNED</code></div><div class="ui-val">Записывается в <code>order_timeline</code> при автоназначении: <code>{operator_id, operator_name, W_at_assignment}</code></div></div>
+      <div class="ui-row"><div class="ui-label">Событие <code>MANUAL_REASSIGNED</code></div><div class="ui-val">Записывается при ручном переназначении: <code>{from_operator_id, to_operator_id, reassigned_by, reason, timestamp}</code></div></div>
+    </div>
+  </div>
+
+  <div class="callout callout-warn">
+    <div class="callout-icon">⚠️</div>
+    <div class="callout-body">
+      <div class="callout-title">Видимость для оператора</div>
+      <div class="callout-text">Оператор видит только свои назначенные заказы. Балл нагрузки, список коллег, статистика смены — только у начальника КЦ. Оператор не знает, почему именно ему пришёл этот заказ.</div>
+    </div>
+  </div>
+
+</section>
+
+
 </main>
 </div>
 
 <!-- FOOTER -->
 <footer class="doc-footer">
-  <div>© 2026 SSI · TOG'ORA — Продуктовая документация v1.0.6</div>
+  <div>© 2026 SSI · TOG'ORA — Продуктовая документация v1.0.7</div>
   <div>АРМ Оператора · Tog'ora.uz · Ташкент</div>
 </footer>
 

@@ -383,97 +383,6 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
   .doc-footer{margin-left:0;padding:32px 24px}
   .role-grid,.info-grid,.alert-types{grid-template-columns:1fr}
 }
-
-/* ══ LOGIST DASHBOARD ══ */
-.ld-metrics-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-bottom:20px}
-@media(max-width:1100px){.ld-metrics-grid{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:600px){.ld-metrics-grid{grid-template-columns:repeat(2,1fr)}}
-.ld-metric{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px 12px;display:flex;flex-direction:column;align-items:flex-start;gap:4px;position:relative;overflow:hidden;transition:border-color .2s}
-.ld-metric::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
-.ld-m-total::before{background:linear-gradient(90deg,var(--text3),transparent)}
-.ld-m-online::before{background:linear-gradient(90deg,#22C55E,transparent)}
-.ld-m-offline::before{background:linear-gradient(90deg,#6B7280,transparent)}
-.ld-m-free::before{background:linear-gradient(90deg,var(--blue),transparent)}
-.ld-m-incident::before{background:linear-gradient(90deg,var(--red),transparent)}
-.ld-m-busy::before{background:linear-gradient(90deg,var(--yellow),transparent)}
-.ld-metric:hover{border-color:rgba(255,107,43,.3)}
-.ld-metric-icon{font-size:18px;margin-bottom:2px}
-.ld-metric-val{font-size:28px;font-weight:800;color:var(--text);line-height:1;font-family:var(--mono)}
-.ld-metric-label{font-size:11px;font-weight:700;color:var(--text2)}
-.ld-metric-sub{font-size:10px;color:var(--text3);line-height:1.3}
-.ld-day-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
-@media(max-width:640px){.ld-day-grid{grid-template-columns:1fr}}
-.ld-day-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px 18px}
-.ld-day-done{border-color:rgba(34,197,94,.25);background:rgba(34,197,94,.03)}
-.ld-day-header{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px}
-.ld-day-icon{font-size:22px}
-.ld-day-title{font-size:13px;font-weight:700;color:var(--text)}
-.ld-day-sub{font-size:11px;color:var(--text3);margin-top:2px;line-height:1.4}
-.ld-day-val{font-size:38px;font-weight:800;color:var(--text);font-family:var(--mono);margin-bottom:10px;line-height:1}
-.ld-day-bar-wrap{margin-bottom:8px}
-.ld-day-bar-label{font-size:11px;color:var(--text3);margin-top:5px}
-.ld-day-source{font-size:10px;color:var(--text3);font-family:var(--mono);padding:6px 8px;background:var(--surface2);border-radius:5px;border:1px solid var(--border);line-height:1.5}
-
-/* ══ ESCALATION OVERLAY MODAL ══ */
-@keyframes escOverlayIn{from{opacity:0}to{opacity:1}}
-@keyframes escCardIn{from{opacity:0;transform:translateY(-32px) scale(.96)}to{opacity:1;transform:none}}
-@keyframes pulsebar{0%,100%{opacity:1;background-position:0% 50%}50%{opacity:.7;background-position:100% 50%}}
-@keyframes urgblink{0%,100%{background:rgba(168,85,247,.2);color:#c084fc}50%{background:rgba(168,85,247,.5);color:#f0abfc}}
-@keyframes escIconPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
-.esc-notif-overlay{position:fixed;inset:0;z-index:9000;display:flex;align-items:center;justify-content:center;background:rgba(5,8,15,.65);backdrop-filter:blur(3px);animation:escOverlayIn .2s ease}
-.esc-notif-overlay.hidden{display:none!important}
-.esc-notif-card{width:min(540px,94vw);background:var(--surface);border:1px solid rgba(168,85,247,.4);border-radius:14px;box-shadow:0 0 0 1px rgba(168,85,247,.1),0 28px 70px rgba(0,0,0,.65);overflow:hidden;animation:escCardIn .28s cubic-bezier(.22,.68,0,1.2)}
-.esc-notif-header{position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(168,85,247,.1),rgba(168,85,247,.03))}
-.esc-notif-pulse-bar{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,transparent 0%,#9333ea 30%,#c084fc 50%,#9333ea 70%,transparent 100%);background-size:200% 100%;animation:pulsebar 2s linear infinite}
-.esc-notif-header-content{display:flex;align-items:center;gap:14px;padding:18px 20px 16px}
-.esc-notif-icon{font-size:28px;animation:escIconPulse 1.5s ease-in-out infinite}
-.esc-notif-title{font-size:15px;font-weight:700;color:var(--text)}
-.esc-notif-subtitle{font-size:11px;color:var(--text3);margin-top:2px}
-.esc-notif-badge-urg{margin-left:auto;font-size:10px;font-weight:800;letter-spacing:.12em;padding:5px 11px;border-radius:20px;border:1px solid rgba(168,85,247,.35);animation:urgblink 1s ease-in-out infinite;white-space:nowrap}
-.esc-notif-body{padding:16px 20px 12px}
-.esc-notif-meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
-.esc-notif-meta-item{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 12px}
-.esc-notif-meta-label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:3px}
-.esc-notif-meta-val{font-size:12px;font-weight:600;color:var(--text)}
-.esc-notif-desc{background:rgba(168,85,247,.06);border:1px solid rgba(168,85,247,.18);border-radius:8px;padding:10px 14px;margin-bottom:12px}
-.esc-notif-desc-label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#a855f7;margin-bottom:5px}
-.esc-notif-desc-text{font-size:12px;color:var(--text2);line-height:1.55;font-style:italic}
-.esc-notif-order-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.esc-notif-order-item{background:var(--surface2);border:1px solid var(--border);border-radius:7px;padding:8px 12px}
-.esc-notif-footer{display:flex;gap:10px;padding:14px 20px 18px;border-top:1px solid var(--border)}
-.esc-notif-btn-later{flex:0 0 auto;padding:10px 20px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);font-size:13px;cursor:pointer;font-family:var(--font);transition:all .15s}
-.esc-notif-btn-later:hover{background:var(--surface);border-color:var(--text3);color:var(--text)}
-.esc-notif-btn-resolve{flex:1;padding:10px 20px;border-radius:8px;border:none;background:linear-gradient(135deg,#9333ea,#7c3aed);color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);box-shadow:0 4px 16px rgba(147,51,234,.45);transition:all .15s}
-.esc-notif-btn-resolve:hover{background:linear-gradient(135deg,#a855f7,#8b5cf6);box-shadow:0 6px 20px rgba(147,51,234,.55)}
-
-/* ══ RESERVE COURIER MODAL ══ */
-@keyframes rcIn{from{opacity:0;transform:scale(.96) translateY(12px)}to{opacity:1;transform:none}}
-.rc-overlay{position:fixed;inset:0;z-index:8500;display:flex;align-items:center;justify-content:center;background:rgba(5,8,15,.6);backdrop-filter:blur(3px)}
-.rc-overlay.hidden{display:none!important}
-.rc-modal{width:min(500px,94vw);max-height:88vh;overflow-y:auto;background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:0 24px 60px rgba(0,0,0,.55);animation:rcIn .22s cubic-bezier(.22,.68,0,1.2)}
-.rc-modal-header{display:flex;align-items:center;justify-content:space-between;padding:16px 18px 14px;border-bottom:1px solid var(--border)}
-.rc-modal-title{font-size:14px;font-weight:700;color:var(--text)}
-.rc-modal-sub{font-size:11px;color:var(--text3);margin-top:2px}
-.rc-close{background:none;border:none;color:var(--text3);font-size:16px;cursor:pointer;padding:4px 8px;border-radius:5px;font-family:var(--font);line-height:1}
-.rc-close:hover{background:var(--surface2);color:var(--text)}
-.rc-current-info{margin:14px 18px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 12px}
-.rc-current-label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);margin-bottom:6px}
-.rc-current-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.rc-section-label{font-size:9px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);padding:0 18px;margin-bottom:8px;margin-top:2px}
-.rc-source-tabs{display:flex;gap:6px;padding:0 18px;margin-bottom:14px;flex-wrap:wrap}
-.rc-tab{padding:6px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--surface2);color:var(--text2);transition:all .15s}
-.rc-tab.active{background:var(--orange-dim);color:var(--orange);border-color:var(--orange-glow)}
-.rc-tab:hover:not(.active){border-color:var(--text3)}
-.rc-courier-list{padding:0 18px;display:flex;flex-direction:column;gap:6px}
-.rc-courier-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;border:2px solid var(--border);background:var(--surface2);cursor:pointer;transition:all .15s}
-.rc-courier-item:hover{border-color:var(--orange-glow);background:rgba(255,107,43,.05)}
-.rc-courier-item.selected{border-color:var(--orange);background:var(--orange-dim)}
-.rc-comment-input{margin:6px 18px 0;background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:9px 12px;font-size:12px;color:var(--text2);line-height:1.4}
-.rc-footer{display:flex;gap:10px;padding:16px 18px 18px}
-.rc-btn-cancel{flex:0 0 auto;padding:10px 18px;border-radius:8px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);font-size:13px;cursor:pointer;font-family:var(--font);transition:all .15s}
-.rc-btn-cancel:hover{background:var(--surface);color:var(--text)}
-.rc-btn-confirm{flex:1;padding:10px 18px;border-radius:8px;border:none;background:var(--orange);color:#fff;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font);box-shadow:0 4px 14px rgba(255,107,43,.3);transition:all .15s}
-.rc-btn-confirm:hover{background:#e55a00;box-shadow:0 6px 18px rgba(255,107,43,.4)}
 </style>
 </head>
 <body>
@@ -490,7 +399,7 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
   <div class="tb-sep"></div>
   <div class="tb-title">Панель оператора контакт-центра</div>
   <div class="tb-right">
-    <span class="tb-badge tb-v">v1.0.5</span>
+    <span class="tb-badge tb-v">v1.0.3</span>
     <span class="tb-badge tb-date">19.05.2026</span>
     <span class="tb-badge tb-stack">Web · HTML/CSS/JS</span>
   </div>
@@ -530,7 +439,6 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
     <a class="sb-item" href="#s13"><span class="sb-num">13</span>Фотоконтроль</a>
     <a class="sb-item" href="#s14"><span class="sb-num">14</span>Карта курьеров</a>
     <a class="sb-item" href="#s15"><span class="sb-num">15</span>Каталог кнопок</a>
-    <a class="sb-item" href="#s16"><span class="sb-num">16</span>Дашборд логиста</a>
   </div>
 </nav>
 
@@ -559,39 +467,6 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
       </tr>
     </thead>
     <tbody>
-
-      <!-- ── v1.0.5 ── -->
-      <tr>
-        <td><span class="cl-ver minor">v1.0.5</span></td>
-        <td><span class="cl-date">19.05.2026</span></td>
-        <td>
-          <ul class="cl-changes">
-            <li><span class="cl-tag add">ADD</span>s16 «Дашборд логиста»: 6 метрик курьерского парка (всего / онлайн / офлайн / свободны / заняты / инцидент)</li>
-            <li><span class="cl-tag add">ADD</span>s16: Блок план/факт дня — запланировано и доставлено с прогресс-баром</li>
-            <li><span class="cl-tag add">ADD</span>s16: Детализация статусов курьеров с условиями и действиями логиста</li>
-            <li><span class="cl-tag add">ADD</span>s16: Таблица источников данных — SQL-условия и частота обновления каждой метрики</li>
-            <li><span class="cl-tag add">ADD</span>Sidebar: пункт «16 Дашборд логиста» в группе IV. Операции</li>
-          </ul>
-        </td>
-        <td><span class="cl-author">SSI / Claude</span></td>
-      </tr>
-
-      <!-- ── v1.0.4 ── -->
-      <tr>
-        <td><span class="cl-ver minor">v1.0.4</span></td>
-        <td><span class="cl-date">19.05.2026</span></td>
-        <td>
-          <ul class="cl-changes">
-            <li><span class="cl-tag add">ADD</span>s02: Логист — добавлена кнопка «↑ Эскалировать» начальнику КЦ (матрица полномочий + карточка роли)</li>
-            <li><span class="cl-tag add">ADD</span>Модал уведомления об эскалации: центральный оверлей с backdrop-blur(3px), пульсирующая шапка, мета-данные заказа, не закрывается автоматически</li>
-            <li><span class="cl-tag add">ADD</span>Звук эскалации: 4 импульса 880/660 Гц через Web Audio API при открытии модала</li>
-            <li><span class="cl-tag change">CHANGE</span>s10: описание шага 2 «Уведомление начальника КЦ» обновлено под новый модал + кнопка демо</li>
-            <li><span class="cl-tag add">ADD</span>Модал «Резервный курьер»: список 4 курьеров с цветными статусами, 3 источника (свой пул / Яндекс.Доставка / ручное), комментарий, подтверждение с записью в хронологию</li>
-            <li><span class="cl-tag change">CHANGE</span>s15: строка «Резервный курьер» расширена — добавлена роль Логиста и кнопка демо</li>
-          </ul>
-        </td>
-        <td><span class="cl-author">SSI / Claude</span></td>
-      </tr>
 
       <!-- ── v1.0.3 ── -->
       <tr>
@@ -761,7 +636,6 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
         <li>Видит инциденты и угрозы, связанные с курьерами</li>
         <li>Может изменить назначенного оператора заказа</li>
         <li>Может вызвать экстренного курьера</li>
-        <li>Может эскалировать ситуацию начальнику КЦ</li>
         <li>Не управляет статусами заказов и не инициирует отмены</li>
       </ul>
     </div>
@@ -800,7 +674,7 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
       <tr><td>Просмотр карты курьеров</td><td>—</td><td>✅</td><td>✅</td></tr>
       <tr><td>Вызов экстренного курьера</td><td>—</td><td>✅</td><td>✅</td></tr>
       <tr><td>Просмотр инцидентов / угроз (все)</td><td>✅</td><td>Только курьерские</td><td>✅</td></tr>
-      <tr><td>Эскалировать начальнику</td><td>✅</td><td>✅</td><td>—</td></tr>
+      <tr><td>Эскалировать начальнику</td><td>✅</td><td>—</td><td>—</td></tr>
       <tr><td>Запрос на отмену (→ эскалация)</td><td>✅</td><td>—</td><td>—</td></tr>
       <tr><td>Разобрать эскалацию</td><td>—</td><td>—</td><td>✅</td></tr>
       <tr><td>Отменить заказ напрямую</td><td>—</td><td>—</td><td>✅</td></tr>
@@ -1319,8 +1193,7 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
       <div>
         <div class="esc-step-who">⚙ Система</div>
         <div class="esc-step-title">Уведомление начальника КЦ</div>
-        <div class="esc-step-desc">Центральный модал с блюром и тёмным оверлеем появляется по центру экрана. <strong>Не закрывается автоматически</strong> — только по кнопке «Позже», «Разобрать →» или клику по backdrop. Содержит: ID заказа, от кого эскалация, тип, описание оператора, мета-данные заказа (клиент, ресторан, статус, слот). Одновременно: счётчик 🔔 увеличивается, строка заказа получает фиолетовую пульсацию. Звук: 4 импульса чередующейся высоты (880 / 660 Гц).
-          <br><br><button onclick="openEscOverlay()" style="margin-top:6px;padding:7px 14px;border-radius:6px;background:linear-gradient(135deg,#9333ea,#7c3aed);color:#fff;border:none;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font)">▶ Показать модал эскалации</button></div>
+        <div class="esc-step-desc">Pop-up уведомление появляется справа вверху (7 секунд). Счётчик на колоколе 🔔 увеличивается. Строка заказа получает фиолетовую рамку с пульсацией. Подменю в сайдбаре обновляется.</div>
       </div>
     </div>
     <div class="esc-step sup">
@@ -1951,7 +1824,7 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
       <tr><td>↑ Эскалировать</td><td><span style="background:var(--purple-dim);color:var(--purple);padding:1px 6px;border-radius:3px;font-size:10px">Esc</span></td><td><span class="tag tag-op">Оператор</span></td></tr>
 
       <tr><td rowspan="3"><span class="st-badge sbl-inc">Инцидент 🚨</span></td><td>✓ Инцидент разрешён</td><td><span style="background:var(--green-dim);color:var(--green);padding:1px 6px;border-radius:3px;font-size:10px;border:1px solid rgba(34,197,94,.2)">Green</span></td><td><span class="tag tag-op">Оба</span></td></tr>
-      <tr><td>🚗 Резервный курьер</td><td><span style="background:var(--orange);color:#fff;padding:1px 6px;border-radius:3px;font-size:10px">Primary</span></td><td><span class="tag tag-op">Оба</span> · <span style="background:var(--green-dim);color:var(--green);padding:1px 6px;border-radius:3px;font-size:10px;border:1px solid rgba(34,197,94,.2)">Логист</span> &nbsp;<button onclick="openRcModal()" style="padding:3px 10px;border-radius:5px;background:var(--orange-dim);color:var(--orange);border:1px solid var(--orange-glow);font-size:10px;font-weight:600;cursor:pointer;font-family:var(--font)">▶ Демо</button></td></tr>
+      <tr><td>🚗 Резервный курьер</td><td><span style="background:var(--orange);color:#fff;padding:1px 6px;border-radius:3px;font-size:10px">Primary</span></td><td><span class="tag tag-op">Оба</span></td></tr>
       <tr><td>↑ Эскалировать</td><td><span style="background:var(--purple-dim);color:var(--purple);padding:1px 6px;border-radius:3px;font-size:10px">Esc</span></td><td><span class="tag tag-op">Оператор</span></td></tr>
     </tbody>
   </table>
@@ -2016,471 +1889,29 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
 </section>
 
 </main>
-
-<!-- ══════════════ 16 ДАШБОРД ЛОГИСТА ══════════════ -->
-<section class="doc-section" id="s16">
-  <div class="section-num" style="background:var(--green-dim);color:var(--green);border-color:rgba(34,197,94,.25)">16</div>
-  <h1 class="section-title">Дашборд логиста</h1>
-  <div class="section-divider" style="background:linear-gradient(90deg,var(--green),transparent)"></div>
-  <p class="section-lead">Дашборд — первый экран при входе с ролью «Логист». Даёт мгновенный срез состояния курьерского парка на текущий момент и итоги дня. Не требует перехода в детали заказов для понимания общей картины.</p>
-
-  <!-- METRIC CARDS ROW 1 — статусы -->
-  <div class="sub-title">Блок 1 — Состояние курьерского парка (реалтайм)</div>
-  <div class="sub-desc">Шесть карточек-метрик обновляются каждые 15 секунд. Расположены в одну строку на десктопе, в две на планшете.</div>
-
-  <div class="ld-metrics-grid">
-
-    <div class="ld-metric ld-m-total">
-      <div class="ld-metric-icon">🧑‍💼</div>
-      <div class="ld-metric-val">24</div>
-      <div class="ld-metric-label">Всего курьеров</div>
-      <div class="ld-metric-sub">В реестре платформы</div>
-    </div>
-
-    <div class="ld-metric ld-m-online">
-      <div class="ld-metric-icon">🟢</div>
-      <div class="ld-metric-val">18</div>
-      <div class="ld-metric-label">Онлайн</div>
-      <div class="ld-metric-sub">Приложение активно, GPS получен</div>
-    </div>
-
-    <div class="ld-metric ld-m-offline">
-      <div class="ld-metric-icon">⚫</div>
-      <div class="ld-metric-val">6</div>
-      <div class="ld-metric-label">Офлайн</div>
-      <div class="ld-metric-sub">Нет сигнала или вышли из смены</div>
-    </div>
-
-    <div class="ld-metric ld-m-free">
-      <div class="ld-metric-icon">🔵</div>
-      <div class="ld-metric-val">5</div>
-      <div class="ld-metric-label">Свободны</div>
-      <div class="ld-metric-sub">Онлайн, не привязаны к заказу</div>
-    </div>
-
-    <div class="ld-metric ld-m-incident">
-      <div class="ld-metric-icon" style="animation:escIconPulse 1.5s ease-in-out infinite">🚨</div>
-      <div class="ld-metric-val" style="color:var(--red)">2</div>
-      <div class="ld-metric-label">Инцидент / угроза</div>
-      <div class="ld-metric-sub">GPS потерян, стоят, ДТП</div>
-    </div>
-
-    <div class="ld-metric ld-m-busy">
-      <div class="ld-metric-icon">🟡</div>
-      <div class="ld-metric-val">11</div>
-      <div class="ld-metric-label">Заняты</div>
-      <div class="ld-metric-sub">Онлайн, выполняют доставку</div>
-    </div>
-
-  </div>
-
-  <div class="callout callout-note" style="margin-bottom:24px">
-    <div class="callout-icon">ℹ️</div>
-    <div class="callout-body">
-      <div class="callout-title">Формула: Онлайн = Свободны + Заняты + Инцидент</div>
-      <div class="callout-text">Сумма «Свободны + Заняты + Инцидент» всегда равна «Онлайн». «Офлайн» = «Всего» − «Онлайн». Несоответствие суммы сигнализирует о рассинхронизации сокета — в правом нижнем углу появится значок ⚠ обновления.</div>
-    </div>
-  </div>
-
-  <!-- METRIC CARDS ROW 2 — план/факт дня -->
-  <div class="sub-title">Блок 2 — Итоги дня (план / факт)</div>
-  <div class="sub-desc">Два счётчика сброшены в полночь и актуальны только для текущей операционной даты.</div>
-
-  <div class="ld-day-grid">
-
-    <div class="ld-day-card">
-      <div class="ld-day-header">
-        <div class="ld-day-icon">📦</div>
-        <div>
-          <div class="ld-day-title">Запланировано на сегодня</div>
-          <div class="ld-day-sub">Заказов с назначенным курьером и слотом сегодня</div>
-        </div>
-      </div>
-      <div class="ld-day-val">47</div>
-      <div class="ld-day-bar-wrap">
-        <div class="ld-day-bar" style="width:100%;background:rgba(59,130,246,.15);border-radius:4px;height:6px">
-          <div style="width:62%;height:6px;border-radius:4px;background:var(--blue)"></div>
-        </div>
-        <div class="ld-day-bar-label">29 уже завершены · 18 в работе</div>
-      </div>
-      <div class="ld-day-source">Источник: заказы со статусами Готовится / Готово / В пути / Завершено — текущая дата слота</div>
-    </div>
-
-    <div class="ld-day-card ld-day-done">
-      <div class="ld-day-header">
-        <div class="ld-day-icon">✅</div>
-        <div>
-          <div class="ld-day-title">Доставлено сегодня</div>
-          <div class="ld-day-sub">Заказов со статусом «Завершено» за сегодня</div>
-        </div>
-      </div>
-      <div class="ld-day-val" style="color:var(--green)">29</div>
-      <div class="ld-day-bar-wrap">
-        <div class="ld-day-bar" style="width:100%;background:var(--green-dim);border-radius:4px;height:6px">
-          <div style="width:62%;height:6px;border-radius:4px;background:var(--green)"></div>
-        </div>
-        <div class="ld-day-bar-label">62% плана выполнено</div>
-      </div>
-      <div class="ld-day-source">Источник: orders WHERE status = 'delivered' AND DATE(slot_date) = TODAY</div>
-    </div>
-
-  </div>
-
-  <!-- STATUS BREAKDOWN TABLE -->
-  <div class="sub-title">Детализация статусов курьеров</div>
-  <table class="status-table">
-    <thead>
-      <tr>
-        <th>Статус</th>
-        <th>Условие</th>
-        <th>Индикатор</th>
-        <th>Действие логиста</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:#22C55E;display:inline-block"></span>Онлайн · Свободен</span></td>
-        <td>Приложение открыто, нет активного заказа</td>
-        <td>Зелёный счётчик</td>
-        <td>Назначить на ожидающий заказ</td>
-      </tr>
-      <tr>
-        <td><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:var(--yellow);display:inline-block"></span>Онлайн · Занят</span></td>
-        <td>Есть активный заказ, GPS обновляется</td>
-        <td>Жёлтый счётчик</td>
-        <td>Мониторинг, при нужде — замена</td>
-      </tr>
-      <tr>
-        <td><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:var(--red);display:inline-block;animation:blink .6s infinite"></span>Инцидент / угроза</span></td>
-        <td>GPS потерян &gt;5 мин / стоит &gt;7 мин / ДТП / не отвечает</td>
-        <td>Красный мигающий счётчик</td>
-        <td>Звонок → резервный курьер / эскалация</td>
-      </tr>
-      <tr>
-        <td><span style="display:inline-flex;align-items:center;gap:6px"><span style="width:9px;height:9px;border-radius:50%;background:var(--text3);display:inline-block"></span>Офлайн</span></td>
-        <td>Приложение закрыто или нет GPS &gt;15 мин</td>
-        <td>Серый счётчик</td>
-        <td>Звонок для уточнения; при необходимости — вывод из смены</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <!-- DATA MODEL NOTE -->
-  <div class="sub-title">Источники данных метрик</div>
-  <table class="status-table" style="margin-bottom:20px">
-    <thead>
-      <tr><th>Метрика</th><th>Источник / условие выборки</th><th>Частота обновления</th></tr>
-    </thead>
-    <tbody>
-      <tr><td>Всего курьеров</td><td><code>couriers WHERE active = true</code></td><td>При загрузке</td></tr>
-      <tr><td>Онлайн</td><td><code>couriers WHERE last_ping ≤ 60s</code></td><td>15 сек (WebSocket)</td></tr>
-      <tr><td>Офлайн</td><td><code>Всего − Онлайн</code></td><td>Производная</td></tr>
-      <tr><td>Свободны</td><td><code>Онлайн WHERE current_order_id IS NULL</code></td><td>15 сек</td></tr>
-      <tr><td>Заняты</td><td><code>Онлайн WHERE current_order_id IS NOT NULL AND status ≠ incident</code></td><td>15 сек</td></tr>
-      <tr><td>Инцидент / угроза</td><td><code>couriers WHERE incident_flag = true OR threat_flag = true</code></td><td>Реалтайм (push)</td></tr>
-      <tr><td>Запланировано сегодня</td><td><code>orders WHERE slot_date = TODAY AND courier_id IS NOT NULL AND status IN (cooking, ready, transit, delivered)</code></td><td>1 мин</td></tr>
-      <tr><td>Доставлено сегодня</td><td><code>orders WHERE status = delivered AND completed_at::date = TODAY</code></td><td>Реалтайм (push)</td></tr>
-    </tbody>
-  </table>
-
-  <div class="callout callout-tip">
-    <div class="callout-icon">🚚</div>
-    <div class="callout-body">
-      <div class="callout-title">Дашборд — только у логиста</div>
-      <div class="callout-text">Начальник КЦ имеет собственный дашборд команды (операторы, эскалации, нагрузка). Дашборд логиста не пересекается с ним — он фокусируется исключительно на курьерском парке. Оператор дашборда не имеет.</div>
-    </div>
-  </div>
-
-</section>
-
-
-
-<div class="esc-notif-overlay" id="escOverlay">
-  <div class="esc-notif-card" id="escCard">
-    <div class="esc-notif-header">
-      <div class="esc-notif-pulse-bar"></div>
-      <div class="esc-notif-header-content">
-        <div class="esc-notif-icon">🔔</div>
-        <div>
-          <div class="esc-notif-title">Эскалация требует вашего внимания</div>
-          <div class="esc-notif-subtitle">Начальник КЦ · Немедленно</div>
-        </div>
-        <div class="esc-notif-badge-urg">СРОЧНО</div>
-      </div>
-    </div>
-    <div class="esc-notif-body">
-      <div class="esc-notif-meta-grid">
-        <div class="esc-notif-meta-item">
-          <div class="esc-notif-meta-label">Заказ</div>
-          <div class="esc-notif-meta-val" style="color:var(--orange);font-weight:700">#TG-2847</div>
-        </div>
-        <div class="esc-notif-meta-item">
-          <div class="esc-notif-meta-label">От кого</div>
-          <div class="esc-notif-meta-val">👤 Оператор Асель</div>
-        </div>
-        <div class="esc-notif-meta-item">
-          <div class="esc-notif-meta-label">Тип</div>
-          <div class="esc-notif-meta-val" style="color:var(--yellow)">⚠️ Ресторан не берёт трубку</div>
-        </div>
-        <div class="esc-notif-meta-item">
-          <div class="esc-notif-meta-label">Время</div>
-          <div class="esc-notif-meta-val">11:42:07 · 3 мин назад</div>
-        </div>
-      </div>
-      <div class="esc-notif-desc">
-        <div class="esc-notif-desc-label">Описание от оператора</div>
-        <div class="esc-notif-desc-text">«Звонил 4 раза — не берёт трубку. Заказ на 24 кг плова, слот 13:00–14:30. До начала готовки 18 минут. Риск срыва высокий.»</div>
-      </div>
-      <div class="esc-notif-order-grid">
-        <div class="esc-notif-order-item">
-          <div class="esc-notif-meta-label">Клиент</div>
-          <div class="esc-notif-meta-val">Мирзоев Б.</div>
-          <div style="font-size:11px;color:var(--text3)">+998 90 123-45-67</div>
-        </div>
-        <div class="esc-notif-order-item">
-          <div class="esc-notif-meta-label">Ресторан</div>
-          <div class="esc-notif-meta-val">Samarqand Osh</div>
-          <div style="font-size:11px;color:var(--text3)">Мирабадский район</div>
-        </div>
-        <div class="esc-notif-order-item">
-          <div class="esc-notif-meta-label">Статус</div>
-          <div><span class="st-badge sbl-acc" style="font-size:11px">Принято рест.</span></div>
-        </div>
-        <div class="esc-notif-order-item">
-          <div class="esc-notif-meta-label">Слот</div>
-          <div class="esc-notif-meta-val">13:00 – 14:30</div>
-          <div style="font-size:11px;color:var(--red)">⏱ 18 мин до готовки</div>
-        </div>
-      </div>
-    </div>
-    <div class="esc-notif-footer">
-      <button class="esc-notif-btn-later" onclick="closeEscOverlay()">Позже</button>
-      <button class="esc-notif-btn-resolve" onclick="closeEscOverlay()">Разобрать → <span style="font-size:10px;opacity:.7">#TG-2847</span></button>
-    </div>
-  </div>
-</div>
-
-<!-- ══════════════ RESERVE COURIER MODAL ══════════════ -->
-<div class="rc-overlay" id="rcOverlay">
-  <div class="rc-modal" id="rcModal">
-    <div class="rc-modal-header">
-      <div style="display:flex;align-items:center;gap:10px">
-        <div style="width:34px;height:34px;border-radius:8px;background:rgba(255,107,43,.15);display:flex;align-items:center;justify-content:center;font-size:18px">🚗</div>
-        <div>
-          <div class="rc-modal-title">Назначить резервного курьера</div>
-          <div class="rc-modal-sub">Заказ #TG-2847 · Samarqand Osh</div>
-        </div>
-      </div>
-      <button class="rc-close" onclick="closeRcModal()">✕</button>
-    </div>
-
-    <div class="rc-current-info">
-      <div class="rc-current-label">Текущий курьер</div>
-      <div class="rc-current-row">
-        <div style="display:flex;align-items:center;gap:8px">
-          <div style="width:28px;height:28px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:13px">🚴</div>
-          <div>
-            <div style="font-size:12px;font-weight:600;color:var(--text)">Камолов Ж. · #K-114</div>
-            <div style="font-size:11px;color:var(--text3)">GPS недоступен · Последний сигнал 11:38</div>
-          </div>
-        </div>
-        <div style="font-size:11px;background:var(--red-dim);color:var(--red);padding:3px 8px;border-radius:5px;border:1px solid rgba(239,68,68,.2)">🚨 Инцидент</div>
-      </div>
-    </div>
-
-    <div class="rc-section-label">Источник курьера</div>
-    <div class="rc-source-tabs">
-      <div class="rc-tab active" onclick="setRcTab(this,'pool')">🏪 Свой пул</div>
-      <div class="rc-tab" onclick="setRcTab(this,'yandex')">🟡 Яндекс.Доставка</div>
-      <div class="rc-tab" onclick="setRcTab(this,'manual')">✏️ Ручное</div>
-    </div>
-
-    <div id="rcTabPool">
-      <div class="rc-section-label">Доступные курьеры</div>
-      <div class="rc-courier-list">
-        <div class="rc-courier-item" onclick="selectCourier(this)" data-id="K-101" data-name="Юсупов А.">
-          <div style="width:32px;height:32px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:14px">🚴</div>
-          <div style="flex:1">
-            <div style="font-size:12px;font-weight:600;color:var(--text)">Юсупов А. <span style="font-size:10px;color:var(--text3);font-weight:400">#K-101</span></div>
-            <div style="font-size:11px;color:var(--text3)">Мирабадский р-н · 1.2 км от ресторана</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#22C55E"><span style="width:7px;height:7px;border-radius:50%;background:#22C55E;display:inline-block"></span>Свободен</div>
-        </div>
-        <div class="rc-courier-item" onclick="selectCourier(this)" data-id="K-107" data-name="Набиев О.">
-          <div style="width:32px;height:32px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:14px">🛵</div>
-          <div style="flex:1">
-            <div style="font-size:12px;font-weight:600;color:var(--text)">Набиев О. <span style="font-size:10px;color:var(--text3);font-weight:400">#K-107</span></div>
-            <div style="font-size:11px;color:var(--text3)">Яккасарайский р-н · 2.8 км · завершит через ~12 мин</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--yellow)"><span style="width:7px;height:7px;border-radius:50%;background:var(--yellow);display:inline-block"></span>Скоро свободен</div>
-        </div>
-        <div class="rc-courier-item" onclick="selectCourier(this)" data-id="K-119" data-name="Рашидов Д.">
-          <div style="width:32px;height:32px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:14px">🚴</div>
-          <div style="flex:1">
-            <div style="font-size:12px;font-weight:600;color:var(--text)">Рашидов Д. <span style="font-size:10px;color:var(--text3);font-weight:400">#K-119</span></div>
-            <div style="font-size:11px;color:var(--text3)">Чиланзарский р-н · 4.1 км · завершит через ~28 мин</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:var(--red)"><span style="width:7px;height:7px;border-radius:50%;background:var(--red);display:inline-block"></span>Занят</div>
-        </div>
-        <div class="rc-courier-item" onclick="selectCourier(this)" data-id="K-122" data-name="Алимов Ш.">
-          <div style="width:32px;height:32px;border-radius:50%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:14px">🛵</div>
-          <div style="flex:1">
-            <div style="font-size:12px;font-weight:600;color:var(--text)">Алимов Ш. <span style="font-size:10px;color:var(--text3);font-weight:400">#K-122</span></div>
-            <div style="font-size:11px;color:var(--text3)">Юнусабадский р-н · 3.5 км</div>
-          </div>
-          <div style="display:flex;align-items:center;gap:5px;font-size:11px;font-weight:600;color:#22C55E"><span style="width:7px;height:7px;border-radius:50%;background:#22C55E;display:inline-block"></span>Свободен</div>
-        </div>
-      </div>
-    </div>
-
-    <div id="rcTabYandex" style="display:none">
-      <div class="callout callout-note" style="margin:12px 0 0">
-        <div class="callout-icon">🟡</div>
-        <div class="callout-body">
-          <div class="callout-title">Яндекс.Доставка — API запрос</div>
-          <div class="callout-text">При подтверждении система отправляет запрос через Яндекс.Доставка API. Ориентировочное время подачи: 15–25 мин. Тариф зачисляется на счёт платформы. Курьер будет назначен автоматически — имя появится в карточке заказа.</div>
-        </div>
-      </div>
-    </div>
-
-    <div id="rcTabManual" style="display:none">
-      <div class="rc-section-label" style="margin-top:12px">Номер телефона курьера</div>
-      <div style="background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:9px 12px;font-size:12px;color:var(--text3);margin-bottom:4px">+998 __ ___-__-__</div>
-      <div style="font-size:11px;color:var(--text3)">Курьер должен быть предварительно зарегистрирован в системе</div>
-    </div>
-
-    <div class="rc-section-label" style="margin-top:16px">Комментарий для хронологии</div>
-    <div class="rc-comment-input">GPS потерян — назначаю ближайшего свободного</div>
-
-    <div class="rc-footer">
-      <button class="rc-btn-cancel" onclick="closeRcModal()">Отмена</button>
-      <button class="rc-btn-confirm" onclick="confirmRcModal()">🚗 Назначить курьера</button>
-    </div>
-
-    <div id="rcSuccess" style="display:none;margin:16px 0 0">
-      <div class="callout callout-tip">
-        <div class="callout-icon">✅</div>
-        <div class="callout-body">
-          <div class="callout-title">Курьер назначен</div>
-          <div class="callout-text" id="rcSuccessText">Юсупов А. (#K-101) заменил Камолова Ж. (#K-114). Запись добавлена в хронологию.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
 </div>
 
 <!-- FOOTER -->
 <footer class="doc-footer">
-  <div>© 2026 SSI · TOG'ORA — Продуктовая документация v1.0.5</div>
+  <div>© 2026 SSI · TOG'ORA — Продуктовая документация v1.0.3</div>
   <div>АРМ Оператора · Tog'ora.uz · Ташкент</div>
 </footer>
 
 <script>
-// ── Active nav highlight on scroll ──
+// Active nav highlight on scroll
 const sections=document.querySelectorAll('.doc-section');
 const navItems=document.querySelectorAll('.sb-item');
 const obs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(e.isIntersecting){
       const id=e.target.id;
-      navItems.forEach(n=>n.classList.toggle('active',n.getAttribute('href')==='#'+id));
+      navItems.forEach(n=>{
+        n.classList.toggle('active',n.getAttribute('href')==='#'+id);
+      });
     }
   });
 },{threshold:0.2,rootMargin:'-60px 0px -60% 0px'});
 sections.forEach(s=>obs.observe(s));
-
-// ── Escalation sound: 4 pulses at 880/660 Hz alternating ──
-function playEscSound(){
-  try{
-    const ctx=new(window.AudioContext||window.webkitAudioContext)();
-    const freqs=[880,660,880,660];
-    freqs.forEach((freq,i)=>{
-      const osc=ctx.createOscillator();
-      const gain=ctx.createGain();
-      osc.connect(gain); gain.connect(ctx.destination);
-      osc.type='sine'; osc.frequency.value=freq;
-      const t=ctx.currentTime+i*0.22;
-      gain.gain.setValueAtTime(0,t);
-      gain.gain.linearRampToValueAtTime(0.28,t+0.04);
-      gain.gain.linearRampToValueAtTime(0,t+0.18);
-      osc.start(t); osc.stop(t+0.2);
-    });
-  }catch(e){}
-}
-
-// ── Escalation overlay ──
-function openEscOverlay(){
-  document.getElementById('escOverlay').classList.remove('hidden');
-  playEscSound();
-}
-function closeEscOverlay(){
-  document.getElementById('escOverlay').classList.add('hidden');
-}
-// Click on backdrop closes modal
-document.getElementById('escOverlay').addEventListener('click',function(e){
-  if(e.target===this) closeEscOverlay();
-});
-// Demo: auto-open after 1.2s if the user lands on s10
-const s10=document.getElementById('s10');
-if(s10){
-  const demoObs=new IntersectionObserver(entries=>{
-    if(entries[0].isIntersecting){
-      setTimeout(openEscOverlay,1200);
-      demoObs.disconnect();
-    }
-  },{threshold:0.3});
-  demoObs.observe(s10);
-}
-
-// ── Reserve courier modal ──
-let selectedCourierId=null;
-let selectedCourierName=null;
-
-function openRcModal(){
-  document.getElementById('rcOverlay').classList.remove('hidden');
-  document.getElementById('rcSuccess').style.display='none';
-}
-function closeRcModal(){
-  document.getElementById('rcOverlay').classList.add('hidden');
-  // reset
-  document.querySelectorAll('.rc-courier-item').forEach(el=>el.classList.remove('selected'));
-  selectedCourierId=null; selectedCourierName=null;
-  setRcTab(document.querySelector('.rc-tab.active')||document.querySelector('.rc-tab'),'pool');
-}
-document.getElementById('rcOverlay').addEventListener('click',function(e){
-  if(e.target===this) closeRcModal();
-});
-function setRcTab(el,tab){
-  document.querySelectorAll('.rc-tab').forEach(t=>t.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('rcTabPool').style.display=tab==='pool'?'':'none';
-  document.getElementById('rcTabYandex').style.display=tab==='yandex'?'':'none';
-  document.getElementById('rcTabManual').style.display=tab==='manual'?'':'none';
-}
-function selectCourier(el){
-  document.querySelectorAll('.rc-courier-item').forEach(c=>c.classList.remove('selected'));
-  el.classList.add('selected');
-  selectedCourierId=el.dataset.id;
-  selectedCourierName=el.dataset.name;
-}
-function confirmRcModal(){
-  const name=selectedCourierName||'Яндекс.Доставка';
-  const id=selectedCourierId||'YD';
-  const successEl=document.getElementById('rcSuccess');
-  const textEl=document.getElementById('rcSuccessText');
-  textEl.textContent=name+' (#'+id+') заменил Камолова Ж. (#K-114). Запись добавлена в хронологию: «🚗 Назначен резервный курьер (заменил #K-114). Источник: '+
-    (selectedCourierId?'свой пул':'Яндекс.Доставка')+'. Комментарий: GPS потерян — назначаю ближайшего свободного.»';
-  successEl.style.display='';
-  document.querySelector('.rc-footer').style.display='none';
-  setTimeout(closeRcModal,3200);
-}
-
-// Bind demo trigger button in s15 if present
-document.querySelectorAll('[data-action="openRc"]').forEach(btn=>{
-  btn.addEventListener('click',openRcModal);
-});
 </script>
 </body>
 </html>

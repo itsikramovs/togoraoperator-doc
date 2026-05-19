@@ -292,7 +292,27 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);font-size:14
 .mv-btn-d{background:var(--red-dim);color:var(--red);border-color:rgba(239,68,68,.2)}
 .mv-btn-p{background:var(--orange);color:#fff}
 
-/* ══ CALLOUT BOXES ══ */
+/* ══ CHANGELOG ══ */
+.cl-table{width:100%;border-collapse:collapse;border-radius:10px;overflow:hidden;border:1px solid var(--border);margin-bottom:24px}
+.cl-table th{background:var(--surface2);padding:9px 14px;text-align:left;font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text3);border-bottom:1px solid var(--border)}
+.cl-table td{padding:10px 14px;border-bottom:1px solid rgba(42,54,80,.4);font-size:12px;color:var(--text2);vertical-align:top}
+.cl-table tr:last-child td{border-bottom:none}
+.cl-table tr:hover td{background:rgba(255,255,255,.015)}
+.cl-ver{font-family:var(--mono);font-size:12px;font-weight:700;padding:2px 8px;border-radius:5px;white-space:nowrap;display:inline-block}
+.cl-ver.major{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.2)}
+.cl-ver.minor{background:var(--orange-dim);color:var(--orange);border:1px solid var(--orange-glow)}
+.cl-ver.patch{background:var(--surface2);color:var(--text2);border:1px solid var(--border)}
+.cl-ver.initial{background:var(--green-dim);color:var(--green);border:1px solid rgba(34,197,94,.2)}
+.cl-date{font-family:var(--mono);font-size:11px;color:var(--text3);white-space:nowrap}
+.cl-tag{display:inline-flex;font-size:9px;font-weight:700;padding:1px 6px;border-radius:4px;margin-right:4px;margin-bottom:2px;vertical-align:middle}
+.cl-tag.add{background:var(--green-dim);color:var(--green)}
+.cl-tag.change{background:var(--blue-dim);color:var(--blue)}
+.cl-tag.fix{background:var(--yellow-dim);color:var(--yellow)}
+.cl-tag.remove{background:var(--red-dim);color:var(--red)}
+.cl-changes{list-style:none;display:flex;flex-direction:column;gap:4px;margin:0;padding:0}
+.cl-changes li{display:flex;align-items:flex-start;gap:6px;line-height:1.5}
+.cl-author{font-size:11px;color:var(--text3)}
+
 .callout{display:flex;gap:12px;padding:14px 16px;border-radius:8px;border:1px solid;margin-bottom:16px}
 .callout-note{background:rgba(59,130,246,.07);border-color:rgba(59,130,246,.2)}
 .callout-warn{background:rgba(245,158,11,.07);border-color:rgba(245,158,11,.2)}
@@ -379,8 +399,8 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
   <div class="tb-sep"></div>
   <div class="tb-title">Панель оператора контакт-центра</div>
   <div class="tb-right">
-    <span class="tb-badge tb-v">v1.0.0</span>
-    <span class="tb-badge tb-date">13.05.2026</span>
+    <span class="tb-badge tb-v">v1.0.3</span>
+    <span class="tb-badge tb-date">19.05.2026</span>
     <span class="tb-badge tb-stack">Web · HTML/CSS/JS</span>
   </div>
 </div>
@@ -389,6 +409,10 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
 
 <!-- SIDEBAR NAV -->
 <nav class="sidebar">
+  <div class="sb-section">
+    <div class="sb-section-lbl">История</div>
+    <a class="sb-item" href="#s00"><span class="sb-num" style="color:var(--green)">∞</span>Changelog</a>
+  </div>
   <div class="sb-section">
     <div class="sb-section-lbl">I. Общее</div>
     <a class="sb-item active" href="#s01"><span class="sb-num">01</span>Обзор продукта</a>
@@ -421,7 +445,124 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
 <!-- CONTENT -->
 <main class="content">
 
+<!-- ══════════════ 00 CHANGELOG ══════════════ -->
+<section class="doc-section" id="s00">
+  <div class="section-num" style="background:var(--green-dim);color:var(--green);border-color:rgba(34,197,94,.2)">∞</div>
+  <h1 class="section-title">История изменений</h1>
+  <div class="section-divider" style="background:linear-gradient(90deg,var(--green),transparent)"></div>
+  <p class="section-lead">
+    Журнал всех версий документа. Схема версионирования: <code>MAJOR.MINOR.BUILD</code> —
+    <code>MAJOR</code> фиксирован (1 = первое публичное издание),
+    <code>MINOR</code> — добавление новых разделов,
+    <code>BUILD</code> инкрементируется при каждом коммите (правки, уточнения, новые записи).
+  </p>
+
+  <table class="cl-table">
+    <thead>
+      <tr>
+        <th>Версия</th>
+        <th>Дата</th>
+        <th>Изменения</th>
+        <th>Автор</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!-- ── v1.0.3 ── -->
+      <tr>
+        <td><span class="cl-ver minor">v1.0.3</span></td>
+        <td><span class="cl-date">19.05.2026</span></td>
+        <td>
+          <ul class="cl-changes">
+            <li><span class="cl-tag remove">REMOVE</span>Статус «Отменяется» полностью удалён — заказ переходит напрямую в «Отменено»</li>
+            <li><span class="cl-tag add">ADD</span>s04: callout «Нет промежуточного статуса Отменяется» — процесс возврата отображается в карточке</li>
+            <li><span class="cl-tag add">ADD</span>s02: Роль «🚚 Логист» — карточка роли, полномочия, фильтр видимости</li>
+            <li><span class="cl-tag change">CHANGE</span>s02: Матрица полномочий расширена до 3 ролей (Оператор / Логист / Нач. КЦ)</li>
+            <li><span class="cl-tag add">ADD</span>s02: Блок «Видимость заказов по роли» — описание фильтра логиста по статусам и типам инцидентов</li>
+            <li><span class="cl-tag change">CHANGE</span>s03: Правила отображения вкладок дополнены правилом для логиста</li>
+            <li><span class="cl-tag change">CHANGE</span>s11: Все ссылки на «Отменяется» заменены на «Отменено»</li>
+            <li><span class="cl-tag remove">REMOVE</span>s15: Строка «Отменяется» с кнопками удалена из каталога кнопок</li>
+          </ul>
+        </td>
+        <td><span class="cl-author">SSI / Claude</span></td>
+      </tr>
+
+      <!-- ── v1.0.2 ── -->
+      <tr>
+        <td><span class="cl-ver minor">v1.0.2</span></td>
+        <td><span class="cl-date">19.05.2026</span></td>
+        <td>
+          <ul class="cl-changes">
+            <li><span class="cl-tag add">ADD</span>s11: Тип 1 — Автоотмена клиентом: правило «−3 часа до Готовится», блокировка для ближайших слотов, 100% автовозврат</li>
+            <li><span class="cl-tag add">ADD</span>s11: Тип 2 — Автоотмена мерчантом: отказ от принятия, 100% автовозврат, эскалационный триггер при повторных отменах</li>
+            <li><span class="cl-tag add">ADD</span>s11: Матрица 4 типов отмены (инициатор / действия оператора / возврат)</li>
+            <li><span class="cl-tag add">ADD</span>s11: Таблица правил возврата — явное указание недоступности частичного возврата при автоотменах</li>
+            <li><span class="cl-tag change">CHANGE</span>s11: Прежние 2 типа переименованы в Тип 3 и Тип 4 для единой нумерации</li>
+          </ul>
+        </td>
+        <td><span class="cl-author">SSI / Claude</span></td>
+      </tr>
+
+      <!-- ── v1.0.1 ── -->
+      <tr>
+        <td><span class="cl-ver patch">v1.0.1</span></td>
+        <td><span class="cl-date">19.05.2026</span></td>
+        <td>
+          <ul class="cl-changes">
+            <li><span class="cl-tag add">ADD</span>Секция «История изменений» (s00) — данный раздел с журналом версий</li>
+            <li><span class="cl-tag add">ADD</span>CSS-компоненты changelog: таблица, теги типов изменений, стили версий</li>
+            <li><span class="cl-tag add">ADD</span>Пункт «Changelog» в боковую навигацию (группа «История»)</li>
+            <li><span class="cl-tag change">CHANGE</span>Соглашение по версионированию: SemVer (MAJOR.MINOR.PATCH)</li>
+          </ul>
+        </td>
+        <td><span class="cl-author">SSI / Claude</span></td>
+      </tr>
+
+      <!-- ── v1.0.0 ── -->
+      <tr>
+        <td><span class="cl-ver initial">v1.0.0</span></td>
+        <td><span class="cl-date">13.05.2026</span></td>
+        <td>
+          <ul class="cl-changes">
+            <li><span class="cl-tag add">ADD</span>Первичная версия документа — 15 разделов в 4 группах</li>
+            <li><span class="cl-tag add">ADD</span>s01 Обзор продукта: назначение АРМ, стек, метрики</li>
+            <li><span class="cl-tag add">ADD</span>s02 Роли и доступ: оператор / начальник КЦ, матрица прав</li>
+            <li><span class="cl-tag add">ADD</span>s03 Интерфейс панели: топбар, сайдбар, зоны контента</li>
+            <li><span class="cl-tag add">ADD</span>s04 Статусы заказов: полная машина состояний с флоу и таблицей</li>
+            <li><span class="cl-tag add">ADD</span>s05 Карточка заказа: анатомия, поля, блоки</li>
+            <li><span class="cl-tag add">ADD</span>s06 Хронология действий: события, форматы записей</li>
+            <li><span class="cl-tag add">ADD</span>s07 Фильтры и поиск: параметры, комбинации</li>
+            <li><span class="cl-tag add">ADD</span>s08 Смена статуса: разрешённые переходы, модалы</li>
+            <li><span class="cl-tag add">ADD</span>s09 Угрозы и инциденты: типы, алгоритм реакции</li>
+            <li><span class="cl-tag add">ADD</span>s10 Эскалации: уровни, условия, SLA эскалации</li>
+            <li><span class="cl-tag add">ADD</span>s11 Отмена и возврат: причины, типы возврата, Click API</li>
+            <li><span class="cl-tag add">ADD</span>s12 SLA и таймеры: пороги, цвета, автоэскалация</li>
+            <li><span class="cl-tag add">ADD</span>s13 Фотоконтроль: загрузка, проверка, статусы</li>
+            <li><span class="cl-tag add">ADD</span>s14 Карта курьеров: отображение, фильтры</li>
+            <li><span class="cl-tag add">ADD</span>s15 Каталог кнопок: все элементы управления, матрица доступа</span></li>
+          </ul>
+        </td>
+        <td><span class="cl-author">SSI / Claude</span></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <div class="callout callout-note">
+    <div>
+      <div style="font-size:12px;font-weight:700;color:var(--blue);margin-bottom:4px">📋 Соглашение по ведению changelog</div>
+      <div style="font-size:12px;color:var(--text2);line-height:1.6">
+        При каждом обновлении документа: (1) добавить строку в эту таблицу с новым номером BUILD и датой,
+        (2) обновить версию в topbar (<code>.tb-v</code>) и footer,
+        (3) обновить дату в topbar (<code>.tb-date</code>).
+        BUILD инкрементируется при каждой правке независимо от объёма.
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════ 01 ОБЗОР ══════════════ -->
+
 <section class="doc-section" id="s01">
   <div class="section-num">01</div>
   <h1 class="section-title">Обзор продукта</h1>
@@ -469,9 +610,9 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
   <div class="section-num">02</div>
   <h1 class="section-title">Роли и доступ</h1>
   <div class="section-divider"></div>
-  <p class="section-lead">В панели существуют две роли с разным уровнем полномочий. Переключение роли доступно через выпадающее меню в правой части топбара.</p>
+  <p class="section-lead">В панели существуют три роли с разным уровнем полномочий и видимости. Переключение роли доступно через выпадающее меню в правой части топбара.</p>
 
-  <div class="role-grid">
+  <div class="role-grid" style="grid-template-columns:repeat(3,1fr)">
     <div class="role-card op">
       <div class="role-card-icon">👤</div>
       <div class="role-card-name">Оператор</div>
@@ -483,6 +624,19 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
         <li>Может эскалировать ситуацию начальнику КЦ</li>
         <li>Отправляет запрос на отмену (не может отменить сам)</li>
         <li>Не может принудительно менять курьера или оператора</li>
+      </ul>
+    </div>
+    <div class="role-card" style="border-color:rgba(34,197,94,.3);background:linear-gradient(135deg,rgba(34,197,94,.04),transparent)">
+      <div class="role-card-icon">🚚</div>
+      <div class="role-card-name" style="color:var(--green)">Логист</div>
+      <div class="role-card-tag" style="background:var(--green-dim);color:var(--green)">Курьерская логистика</div>
+      <ul>
+        <li>Видит заказы в статусах: <strong>Готовится, Готово, В пути, Доставлен</strong></li>
+        <li>Просматривает карту курьеров в реальном времени</li>
+        <li>Видит инциденты и угрозы, связанные с курьерами</li>
+        <li>Может изменить назначенного оператора заказа</li>
+        <li>Может вызвать экстренного курьера</li>
+        <li>Не управляет статусами заказов и не инициирует отмены</li>
       </ul>
     </div>
     <div class="role-card sup">
@@ -505,25 +659,46 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
     <thead>
       <tr>
         <th>Действие</th>
-        <th>Оператор</th>
-        <th>Начальник КЦ</th>
+        <th>👤 Оператор</th>
+        <th>🚚 Логист</th>
+        <th>👑 Нач. КЦ</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td>Перевод на следующий статус</td><td>✅ Да</td><td>✅ Да</td></tr>
-      <tr><td>Принудительный перевод через модал</td><td>✅ Да</td><td>✅ Да</td></tr>
-      <tr><td>Добавить примечание</td><td>✅ Да</td><td>✅ Да</td></tr>
-      <tr><td>Отметить контрольный звонок</td><td>✅ Да</td><td>✅ Да</td></tr>
-      <tr><td>Эскалировать начальнику</td><td>✅ Да</td><td>—</td></tr>
-      <tr><td>Запрос на отмену (→ эскалация)</td><td>✅ Да</td><td>—</td></tr>
-      <tr><td>Разобрать эскалацию</td><td>—</td><td>✅ Да</td></tr>
-      <tr><td>Отменить заказ напрямую</td><td>—</td><td>✅ Да</td></tr>
-      <tr><td>Изменить курьера</td><td>—</td><td>✅ Да</td></tr>
-      <tr><td>Изменить оператора заказа</td><td>—</td><td>✅ Да</td></tr>
-      <tr><td>Инициировать возврат Click</td><td>—</td><td>✅ Да</td></tr>
-      <tr><td>Дашборд команды / Эскалации</td><td>—</td><td>✅ Да</td></tr>
+      <tr><td>Просмотр заказов</td><td>Только свои</td><td>Готовится / Готово / В пути / Доставлен</td><td>Все заказы</td></tr>
+      <tr><td>Перевод на следующий статус</td><td>✅</td><td>—</td><td>✅</td></tr>
+      <tr><td>Принудительный перевод через модал</td><td>✅</td><td>—</td><td>✅</td></tr>
+      <tr><td>Добавить примечание</td><td>✅</td><td>—</td><td>✅</td></tr>
+      <tr><td>Отметить контрольный звонок</td><td>✅</td><td>—</td><td>✅</td></tr>
+      <tr><td>Изменить оператора заказа</td><td>—</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Просмотр карты курьеров</td><td>—</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Вызов экстренного курьера</td><td>—</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Просмотр инцидентов / угроз (все)</td><td>✅</td><td>Только курьерские</td><td>✅</td></tr>
+      <tr><td>Эскалировать начальнику</td><td>✅</td><td>—</td><td>—</td></tr>
+      <tr><td>Запрос на отмену (→ эскалация)</td><td>✅</td><td>—</td><td>—</td></tr>
+      <tr><td>Разобрать эскалацию</td><td>—</td><td>—</td><td>✅</td></tr>
+      <tr><td>Отменить заказ напрямую</td><td>—</td><td>—</td><td>✅</td></tr>
+      <tr><td>Изменить курьера заказа</td><td>—</td><td>—</td><td>✅</td></tr>
+      <tr><td>Инициировать возврат Click</td><td>—</td><td>—</td><td>✅</td></tr>
+      <tr><td>Дашборд команды / Эскалации</td><td>—</td><td>—</td><td>✅</td></tr>
     </tbody>
   </table>
+
+  <div class="sub-title">Видимость заказов по роли</div>
+  <div class="callout callout-note" style="margin-bottom:12px">
+    <div class="callout-icon">🚚</div>
+    <div class="callout-body">
+      <div class="callout-title">Логист — фильтр по статусу</div>
+      <div class="callout-text">
+        Логист видит только заказы в статусах: <span class="st-badge sbl-cook" style="font-size:10px">Готовится</span>
+        <span class="st-badge" style="font-size:10px;background:rgba(255,107,43,.1);color:#FF6B2B">Готово к отправке</span>
+        <span class="st-badge sbl-tr" style="font-size:10px">В пути</span>
+        <span class="st-badge sbl-done" style="font-size:10px">Завершено</span>.
+        Заказы до стадии готовки (Новый, Принято рестораном) и отменённые заказы в интерфейсе логиста не отображаются.<br><br>
+        Из тревог и инцидентов логист видит <strong>только те, которые связаны с курьером</strong>: опоздание курьера, GPS недоступен, ДТП, курьер не отвечает, превышение времени маршрута.
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ══════════════ 03 ИНТЕРФЕЙС ══════════════ -->
@@ -566,7 +741,6 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
       <div class="svt-item alert">Угроза ⚠️<span class="svt-cnt yellow-c">2</span></div>
       <div class="svt-item alert-r">Инцидент 🚨<span class="svt-cnt red-c">1</span></div>
       <div class="svt-item esc-color">Эскалации 🔔<span class="svt-cnt purple-c">1</span></div>
-      <div class="svt-item">Отменяется<span class="svt-cnt" style="background:rgba(156,163,175,.1);color:#9CA3AF;display:inline-flex">2</span></div>
       <div class="svt-item">Отменено<span class="svt-cnt" style="background:rgba(156,163,175,.1);color:#9CA3AF;display:inline-flex">2</span></div>
     </div>
     <div class="svt-right">
@@ -576,6 +750,7 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
       <div class="svt-right-item">🚨 <span>«Инцидент» — красная мигающая точка + интенсивный пульс</span></div>
       <div class="svt-right-item">🔔 <span>«Эскалации» — фиолетовая точка, счётчик всегда актуален</span></div>
       <div class="svt-right-item">👥 <span>«Команда» — только у начальника КЦ</span></div>
+      <div class="svt-right-item">🚚 <span>«Готовится / Готово / В пути / Доставлен» — логист видит только эти вкладки + угрозы/инциденты по курьерам</span></div>
       <div class="svt-right-item">↕ <span>Активная вкладка — оранжевая левая граница + подсветка фона</span></div>
     </div>
   </div>
@@ -594,7 +769,7 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
   <div class="section-num">04</div>
   <h1 class="section-title">Статусы заказов</h1>
   <div class="section-divider"></div>
-  <p class="section-lead">Заказ проходит линейный путь через 6 основных статусов. Параллельно существуют 4 специальных статуса — для тревог, отмен и архива.</p>
+  <p class="section-lead">Заказ проходит линейный путь через 6 основных статусов. Параллельно существуют 3 специальных статуса — для тревог и отмен.</p>
 
   <div class="flow-wrap">
     <div class="flow-title">Основной флоу (happy path)</div>
@@ -620,9 +795,14 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
       <div class="flow-arrow"></div>
       <div class="flow-step fs-inc"><div class="flow-dot">🚨</div><div class="flow-label">Инцидент</div><div class="flow-sub">Требует решения</div></div>
       <div class="flow-arrow"></div>
-      <div class="flow-step fs-cx"><div class="flow-dot">↩</div><div class="flow-label">Отменяется</div><div class="flow-sub">Click возврат</div></div>
-      <div class="flow-arrow"></div>
-      <div class="flow-step fs-cx"><div class="flow-dot">✗</div><div class="flow-label">Отменено</div><div class="flow-sub">Архив</div></div>
+      <div class="flow-step fs-cx"><div class="flow-dot">✗</div><div class="flow-label">Отменено</div><div class="flow-sub">Возврат в карточке</div></div>
+    </div>
+  </div>
+  <div class="callout callout-note" style="margin-bottom:20px">
+    <div class="callout-icon">ℹ️</div>
+    <div class="callout-body">
+      <div class="callout-title">Нет промежуточного статуса «Отменяется»</div>
+      <div class="callout-text">Отмена переводит заказ напрямую в <strong>«Отменено»</strong>. Процесс возврата средств (статус Click-транзакции, тип возврата, временные метки) отображается внутри карточки заказа, а не как отдельный статус.</div>
     </div>
   </div>
 
@@ -681,16 +861,10 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
         <td>Решено → выбранный статус; Эскалация → <span class="tag tag-sup">Начальник КЦ</span></td>
       </tr>
       <tr>
-        <td><span class="st-badge sbl-cx">Отменяется</span></td>
-        <td><span class="tag tag-sup">Начальник КЦ</span></td>
-        <td>Процесс отмены инициирован. Click-возврат обрабатывается.</td>
-        <td>Завершение процесса → <span class="st-badge sbl-cx">Отменено</span></td>
-      </tr>
-      <tr>
         <td><span class="st-badge sbl-cx">Отменено</span></td>
-        <td><span class="tag tag-sys">Система</span></td>
-        <td>Финальный архивный статус. Возврат выполнен или зафиксирован отказ.</td>
-        <td>—</td>
+        <td><span class="tag tag-sys">Система</span> / <span class="tag tag-sup">Нач. КЦ</span></td>
+        <td>Заказ отменён (клиентом, мерчантом или нач. КЦ). Процесс возврата отображается внутри карточки заказа.</td>
+        <td>Финальный статус. Архив.</td>
       </tr>
     </tbody>
   </table>
@@ -1060,9 +1234,9 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
       <tr><td rowspan="3">Продолжить</td><td>✓ Оставить в текущем статусе</td><td>Только запись в хронологию</td></tr>
       <tr><td>→ Перевести на следующий статус</td><td>Автоматический переход по флоу + метка времени</td></tr>
       <tr><td>↕ Принудительно задать статус</td><td>Открывает дропдаун выбора статуса → переводит</td></tr>
-      <tr><td rowspan="3">Отменить</td><td>✗ Отменить — полный возврат</td><td>→ Отменяется + Click возврат 100%</td></tr>
-      <tr><td>✗ Отменить — частичный возврат</td><td>→ Отменяется + пометка «частичный»</td></tr>
-      <tr><td>✗ Отменить — без возврата</td><td>→ Отменяется, возврат = 0</td></tr>
+      <tr><td rowspan="3">Отменить</td><td>✗ Отменить — полный возврат</td><td>→ Отменено · Click возврат 100% (в карточке)</td></tr>
+      <tr><td>✗ Отменить — частичный возврат</td><td>→ Отменено · частичный возврат (в карточке)</td></tr>
+      <tr><td>✗ Отменить — без возврата</td><td>→ Отменено · без возврата (в карточке)</td></tr>
       <tr><td rowspan="3">Прочее</td><td>🚗 Назначить резервного курьера</td><td>Запись в хронологию + уведомление</td></tr>
       <tr><td>👤 Передать другому оператору</td><td>Только запись (ручная переназначение)</td></tr>
       <tr><td>❓ Запросить уточнение</td><td>Только запись + уведомление оператору</td></tr>
@@ -1083,8 +1257,157 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
   <div class="section-num">11</div>
   <h1 class="section-title">Отмена и возврат</h1>
   <div class="section-divider"></div>
+  <p class="section-lead">Существует четыре типа отмены заказа. Два из них инициируются стороной клиента или мерчанта автоматически — оператор в этих случаях наблюдает факт и не совершает никаких действий. Два других требуют участия оператора или начальника КЦ.</p>
 
-  <div class="sub-title">Запрос на отмену (оператор → эскалация)</div>
+  <!-- ── МАТРИЦА ТИПОВ ОТМЕНЫ ── -->
+  <div class="sub-title">Матрица типов отмены</div>
+  <table class="status-table" style="margin-bottom:28px">
+    <thead>
+      <tr>
+        <th>Тип</th>
+        <th>Инициатор</th>
+        <th>Триггер</th>
+        <th>Действия оператора</th>
+        <th>Возврат</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="st-badge" style="background:rgba(6,182,212,.1);color:var(--cyan);border:1px solid rgba(6,182,212,.2)">🙋 Клиент</span></td>
+        <td>Клиент (самостоятельно)</td>
+        <td>Отмена в приложении в допустимое окно</td>
+        <td style="color:var(--text3);font-style:italic">Только просмотр</td>
+        <td><span style="color:var(--green);font-weight:700">💸 100% авто</span></td>
+      </tr>
+      <tr>
+        <td><span class="st-badge" style="background:rgba(245,158,11,.1);color:var(--yellow);border:1px solid rgba(245,158,11,.2)">🏪 Мерчант</span></td>
+        <td>Мерчант (из своей панели)</td>
+        <td>Отказ от принятия заказа</td>
+        <td style="color:var(--text3);font-style:italic">Только просмотр</td>
+        <td><span style="color:var(--green);font-weight:700">💸 100% авто</span></td>
+      </tr>
+      <tr>
+        <td><span class="st-badge" style="background:var(--blue-dim);color:var(--blue)">👤 Оператор</span></td>
+        <td>Оператор КЦ</td>
+        <td>Создаёт запрос на отмену → эскалация</td>
+        <td>Заполнить форму запроса</td>
+        <td>Решает начальник КЦ</td>
+      </tr>
+      <tr>
+        <td><span class="st-badge" style="background:var(--purple-dim);color:var(--purple)">👑 Нач. КЦ</span></td>
+        <td>Начальник КЦ</td>
+        <td>Прямая отмена через кнопку</td>
+        <td>—</td>
+        <td>Полный / частичный / без</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ── TYP 1: АВТООТМЕНА КЛИЕНТОМ ── -->
+  <div class="sub-title">Тип 1 — Отмена клиентом (автоматическая)</div>
+  <div class="sub-desc">Клиент самостоятельно отменяет заказ через приложение. Система проверяет допустимость окна, переводит заказ в «Отменено» и инициирует полный возврат. Оператор действий не выполняет.</div>
+
+  <div style="display:flex;gap:20px;align-items:flex-start;margin-bottom:24px">
+    <div style="flex:1">
+      <div class="callout callout-warn" style="margin-bottom:12px">
+        <div class="callout-icon">⏱️</div>
+        <div class="callout-body">
+          <div class="callout-title">Окно отмены — правило «−3 часа»</div>
+          <div class="callout-text">
+            Клиент может отменить заказ не позднее чем за <strong>3 часа до перехода в статус «Готовится»</strong>.<br><br>
+            Если между текущим моментом и плановым временем начала готовки <strong>менее 3 часов</strong> — кнопка отмены в приложении <strong>заблокирована</strong>.<br><br>
+            <strong>Крайний случай:</strong> если заказ оформлен на ближайший доступный слот и до него уже менее 3 часов — отмена недоступна сразу с момента оформления.
+          </div>
+        </div>
+      </div>
+      <div class="callout callout-note">
+        <div class="callout-icon">👁️</div>
+        <div class="callout-body">
+          <div class="callout-title">Роль оператора: только наблюдение</div>
+          <div class="callout-text">В хронологии заказа появляется запись типа <code>cancel</code>: «🙋 Отменён клиентом». Статус переходит в «Отменено». Процесс возврата виден в карточке. инициируется системой автоматически — оператор кнопок не нажимает.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <table class="status-table" style="min-width:280px">
+        <thead><tr><th colspan="2">Алгоритм проверки окна</th></tr></thead>
+        <tbody>
+          <tr>
+            <td style="font-family:var(--mono);font-size:11px">T_now</td>
+            <td>Текущее время</td>
+          </tr>
+          <tr>
+            <td style="font-family:var(--mono);font-size:11px">T_cook</td>
+            <td>Плановое время старта «Готовится»</td>
+          </tr>
+          <tr>
+            <td style="font-family:var(--mono);font-size:11px">T_cook − T_now ≥ 3h</td>
+            <td><span style="color:var(--green);font-weight:700">✓ Отмена доступна</span></td>
+          </tr>
+          <tr>
+            <td style="font-family:var(--mono);font-size:11px">T_cook − T_now &lt; 3h</td>
+            <td><span style="color:var(--red);font-weight:700">✗ Отмена заблокирована</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:12px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px">
+        <div style="font-size:11px;font-weight:700;color:var(--text3);margin-bottom:8px;letter-spacing:.06em;text-transform:uppercase">Хронология — запись об отмене клиентом</div>
+        <div style="display:flex;gap:10px;align-items:flex-start">
+          <div style="width:28px;height:28px;border-radius:50%;background:rgba(6,182,212,.12);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🙋</div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:var(--text)">Отменён клиентом</div>
+            <div style="font-size:11px;color:var(--text3)">Система · автоматически</div>
+            <div style="font-size:11px;color:var(--green);margin-top:3px">💸 Полный возврат инициирован</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TYPE 2: АВТООТМЕНА МЕРЧАНТОМ ── -->
+  <div class="sub-title">Тип 2 — Отмена мерчантом (автоматическая)</div>
+  <div class="sub-desc">Мерчант отклоняет заказ из своей панели вместо принятия. Система немедленно переводит заказ в «Отменено» и инициирует полный возврат. Оператор действий не выполняет.</div>
+
+  <div style="display:flex;gap:20px;align-items:flex-start;margin-bottom:24px">
+    <div style="flex:1">
+      <div class="callout callout-note" style="margin-bottom:12px">
+        <div class="callout-icon">👁️</div>
+        <div class="callout-body">
+          <div class="callout-title">Роль оператора: только наблюдение</div>
+          <div class="callout-text">В хронологии появляется запись: «🏪 Отменён мерчантом» с причиной из панели мерчанта (если указана). Оператор не может изменить ни статус, ни решение по возврату.</div>
+        </div>
+      </div>
+      <div class="callout callout-danger">
+        <div class="callout-icon">⚠️</div>
+        <div class="callout-body">
+          <div class="callout-title">Эскалационный триггер</div>
+          <div class="callout-text">Повторная отмена мерчантом (2+ в течение смены) автоматически создаёт угрозу <span class="st-badge sbl-risk" style="font-size:10px">Угроза ⚠️</span> в очереди оператора для последующей проработки с мерчантом.</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px;min-width:280px">
+        <div style="font-size:11px;font-weight:700;color:var(--text3);margin-bottom:8px;letter-spacing:.06em;text-transform:uppercase">Хронология — запись об отмене мерчантом</div>
+        <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:10px">
+          <div style="width:28px;height:28px;border-radius:50%;background:rgba(245,158,11,.12);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0">🏪</div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:var(--text)">Отменён мерчантом</div>
+            <div style="font-size:11px;color:var(--text3)">Система · автоматически</div>
+            <div style="font-size:11px;color:var(--text2);margin-top:3px">Причина: нет возможности выполнить</div>
+            <div style="font-size:11px;color:var(--green);margin-top:3px">💸 Полный возврат инициирован</div>
+          </div>
+        </div>
+        <div style="border-top:1px solid var(--border);padding-top:10px">
+          <div style="font-size:11px;font-weight:700;color:var(--text3);margin-bottom:6px">Доступные кнопки оператора</div>
+          <div style="font-size:12px;color:var(--red);font-style:italic">Нет доступных действий</div>
+          <div style="font-size:11px;color:var(--text3);margin-top:4px">Панель действий скрыта / деактивирована</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── TYPE 3: ЗАПРОС ОПЕРАТОРА ── -->
+  <div class="sub-title">Тип 3 — Запрос на отмену (оператор → эскалация)</div>
   <div class="sub-desc">Оператор не может отменить заказ напрямую. Он создаёт запрос, который автоматически становится эскалацией к начальнику КЦ.</div>
 
   <div style="display:flex;gap:20px;align-items:flex-start;margin-bottom:24px">
@@ -1122,7 +1445,8 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
     </div>
   </div>
 
-  <div class="sub-title">Прямая отмена (начальник КЦ)</div>
+  <!-- ── TYPE 4: ПРЯМАЯ ОТМЕНА НАЧ КЦ ── -->
+  <div class="sub-title">Тип 4 — Прямая отмена (начальник КЦ)</div>
   <div class="sub-desc">Начальник КЦ может отменить заказ напрямую через кнопку «✗ Отмена» в панели действий заказа.</div>
 
   <div style="display:flex;gap:20px;align-items:flex-start;margin-bottom:24px">
@@ -1145,7 +1469,7 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
       </div>
     </div>
     <div style="flex:1;padding-top:8px">
-      <table class="sla-table">
+      <table class="status-table">
         <thead><tr><th>Тип возврата</th><th>Что происходит</th></tr></thead>
         <tbody>
           <tr><td>💸 Полный (100%)</td><td>Click возврат на всю сумму заказа автоматически</td></tr>
@@ -1155,6 +1479,42 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
       </table>
     </div>
   </div>
+
+  <!-- ── ПРАВИЛА ВОЗВРАТА ── -->
+  <div class="sub-title">Правила возврата по типу отмены</div>
+  <table class="status-table" style="margin-bottom:16px">
+    <thead>
+      <tr><th>Тип отмены</th><th>Возврат</th><th>Способ</th><th>Частичный возврат</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="st-badge" style="background:rgba(6,182,212,.1);color:var(--cyan)">🙋 Клиент</span></td>
+        <td><strong style="color:var(--green)">100% обязателен</strong></td>
+        <td>Click API · автоматически</td>
+        <td style="color:var(--red)">Недоступен</td>
+      </tr>
+      <tr>
+        <td><span class="st-badge" style="background:rgba(245,158,11,.1);color:var(--yellow)">🏪 Мерчант</span></td>
+        <td><strong style="color:var(--green)">100% обязателен</strong></td>
+        <td>Click API · автоматически</td>
+        <td style="color:var(--red)">Недоступен</td>
+      </tr>
+      <tr>
+        <td><span class="st-badge" style="background:var(--purple-dim);color:var(--purple)">👑 Нач. КЦ</span></td>
+        <td>На усмотрение нач. КЦ</td>
+        <td>Click API · вручную</td>
+        <td style="color:var(--green)">Доступен</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="callout callout-danger" style="margin-bottom:0">
+    <div class="callout-icon">🔒</div>
+    <div class="callout-body">
+      <div class="callout-title">Автоматические отмены — возврат без исключений</div>
+      <div class="callout-text">При отмене клиентом или мерчантом система <strong>всегда</strong> инициирует полный возврат (100%) через Click API. Частичный возврат или отказ от возврата в этих сценариях технически невозможны — поле выбора типа возврата в интерфейсе оператора для этих случаев не отображается.</div>
+    </div>
+  </div>
+
 </section>
 
 <!-- ══════════════ 12 SLA И ТАЙМЕРЫ ══════════════ -->
@@ -1466,8 +1826,6 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
       <tr><td rowspan="3"><span class="st-badge sbl-inc">Инцидент 🚨</span></td><td>✓ Инцидент разрешён</td><td><span style="background:var(--green-dim);color:var(--green);padding:1px 6px;border-radius:3px;font-size:10px;border:1px solid rgba(34,197,94,.2)">Green</span></td><td><span class="tag tag-op">Оба</span></td></tr>
       <tr><td>🚗 Резервный курьер</td><td><span style="background:var(--orange);color:#fff;padding:1px 6px;border-radius:3px;font-size:10px">Primary</span></td><td><span class="tag tag-op">Оба</span></td></tr>
       <tr><td>↑ Эскалировать</td><td><span style="background:var(--purple-dim);color:var(--purple);padding:1px 6px;border-radius:3px;font-size:10px">Esc</span></td><td><span class="tag tag-op">Оператор</span></td></tr>
-
-      <tr><td><span class="st-badge sbl-cx">Отменяется</span></td><td>✓ Подтвердить отмену · 💸 Возврат</td><td><span style="background:var(--green-dim);color:var(--green);padding:1px 6px;border-radius:3px;font-size:10px;border:1px solid rgba(34,197,94,.2)">Green · Ghost</span></td><td><span class="tag tag-op">Оба · Нач. КЦ</span></td></tr>
     </tbody>
   </table>
 
@@ -1486,7 +1844,7 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
     <div class="info-card">
       <div class="ic-icon" style="font-size:16px">✗ Отмена</div>
       <div class="ic-title">Прямая отмена</div>
-      <div class="ic-desc">Полный модал: причина (по группам) + комментарий + тип возврата (полный / частичный / без). Переводит в «Отменяется».</div>
+      <div class="ic-desc">Полный модал: причина (по группам) + комментарий + тип возврата (полный / частичный / без). Переводит в «Отменено». Детали возврата отображаются в карточке заказа.</div>
     </div>
     <div class="info-card">
       <div class="ic-icon" style="font-size:16px">💸 Возврат</div>
@@ -1535,7 +1893,7 @@ code{font-family:var(--mono);font-size:12px;background:var(--surface2);color:var
 
 <!-- FOOTER -->
 <footer class="doc-footer">
-  <div>© 2026 SSI · TOG'ORA — Продуктовая документация v1.0.0</div>
+  <div>© 2026 SSI · TOG'ORA — Продуктовая документация v1.0.3</div>
   <div>АРМ Оператора · Tog'ora.uz · Ташкент</div>
 </footer>
 
